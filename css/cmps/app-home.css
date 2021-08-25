@@ -1,0 +1,43 @@
+.home {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.app-preview {
+    width: 90%;
+    background-color: #d9fff5;
+    padding: 30px;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.app-preview.app2 {
+    flex-direction: row-reverse;
+}
+
+.app-preview .app-img {
+    border-radius: 2rem;
+    padding: 20px;
+    width: 45%;
+    height: 200px;
+}
+
+.app-preview.app1 .app-img {
+    background-color: #f28482;
+}
+
+.app-preview.app2 .app-img {
+    background-color: #f6bd60;
+}
+
+.app-preview.app3 .app-img {
+    background-color: #f5cac3;
+}
+
+.app-preview .app-info {
+    width: 45%;
+}
