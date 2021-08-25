@@ -1,0 +1,25 @@
+.mail-preview { 
+    display: flex;
+    padding: 15px 100px 15px 40px;
+    justify-content: space-between;
+    border-bottom: 2px #f28482 solid;
+}
+
+.mail-preview:hover {
+    color: whitesmoke;
+    background-color: #f28482;
+    border-top: white 2px solid;
+    border-bottom: white 2px solid;
+    box-shadow: 0px 5px 10px 0px #f6aaa9, 0px -5px 10px 0px #f6aaa9;
+    cursor: pointer;
+}
+
+.mail-preview h1 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.mail-preview .mail-info {
+    display: flex;
+    gap: 20px;
+}

@@ -1,4 +1,9 @@
 .mail-app {
+    margin-top: 20px;
+    color: rgb(42, 42, 42);
     display: flex;
     justify-content: space-between;
+    min-height: calc(100vh - 250px);
+    font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+
 }
