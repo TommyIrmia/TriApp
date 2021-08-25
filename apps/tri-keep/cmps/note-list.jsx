@@ -1,5 +1,6 @@
 import {NoteTxt} from './note-txt.jsx'
 import {NoteImg} from './note-img.jsx'
+import {NoteTodos} from './note-todos.jsx'
 
 export class NoteList extends React.Component {
 
@@ -16,6 +17,8 @@ render() {
                 return <NoteTxt note={note}  />
             case 'note-img':
                 return <NoteImg note={note} />
+            case 'note-todos':
+                return <NoteTodos note={note} />
         }
     }
 

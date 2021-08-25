@@ -1,0 +1,12 @@
+@font-face {
+    font-family: regular;
+    src: url("../../font-awesome/fa-regular-400.ttf")
+}
+
+.far::before {
+    font-family: regular;
+}
+
+.far.fa-check-square::before {
+    content: "\f14a";
+}

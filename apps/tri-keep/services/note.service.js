@@ -50,17 +50,17 @@ function _createNotes() {
                     backgroundColor: "#00d"
                 }
             },
-            // {
-            //     id: "n103",
-            //     type: "note-todos",
-            //     info: {
-            //         label: "Get my stuff together",
-            //         todos: [
-            //             { txt: "Driving liscence", doneAt: null },
-            //             { txt: "Coding power", doneAt: 187111111 }
-            //         ]
-            //     }
-            // }
+            {
+                id: "n103",
+                type: "note-todos",
+                info: {
+                    label: "Get my shit together",
+                    todos: [
+                        { txt: "Driving liscence", doneAt: null },
+                        { txt: "Coding power", doneAt: 187111111 }
+                    ]
+                }
+            },
             {
                 id: "n104",
                 type: "note-txt",

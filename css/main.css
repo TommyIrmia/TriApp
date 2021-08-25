@@ -1,21 +1,30 @@
+/* PARTS */
+
 @import './parts/fonts.css';
+@import './parts/font-awesome.css';
 @import './parts/helpers.css';
 @import './parts/base.css';
+
+/* CMPS */
+
 @import './cmps/app-home.css';
+@import './cmps/app-header.css';
+@import './cmps/app-footer.css';
+@import './cmps/note-add.css';
+
+/* APP NOTE */
+
 @import './apps/keep/note-app.css';
 @import './apps/keep/note-txt.css';
 @import './apps/keep/note-img.css';
 @import './apps/keep/note-list.css';
+@import './apps/keep/note-todos.css';
 
-/* @import './apps/keep/note-todos.css'; */
+/* APP MAIL */
 
 @import './apps/mail/mail-app.css';
 @import './apps/mail/mail-list.css';
 @import './apps/mail/mail-nav.css';
 @import './apps/mail/mail-preview.css';
 
-/* @import './cmps/user-msg'; */
-
-@import './cmps/app-header.css';
-@import './cmps/app-footer.css';
-@import './cmps/note-add.css';
+/* APP BOOK */
