@@ -61,6 +61,44 @@ function _createNotes() {
             //         ]
             //     }
             // }
+            {
+                id: "n104",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "tommyyyyyyy stommmmmmm"
+                }
+            },
+            {
+                id: "n105",
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "#00d"
+                }
+            },
+            {
+                id: "n106",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "im txt"
+                }
+            },
+            {
+                id: "n107",
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "#00d"
+                }
+            },
         ]
     }
     gNotes = [...notes];

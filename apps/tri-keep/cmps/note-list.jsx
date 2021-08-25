@@ -27,7 +27,7 @@ render() {
     const {notes} = this.props;
     return (
         <section>
-            <section className="note-list" >
+            <section className="note-list flex" >
                 {notes.map(note => <DynamicCmp key={note.id} note={note} />)}
             </section>
         </section>

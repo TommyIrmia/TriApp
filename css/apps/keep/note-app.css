@@ -1,0 +1,4 @@
+.note-app {
+    min-height: calc(100vh - 250px);
+    padding: 0 50px 50px;
+}
