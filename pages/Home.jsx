@@ -32,14 +32,14 @@ export function Home() {
             <h1 className="team-head">The Team</h1>
             <div className="team">
                 <div className="member">
-                    <div className="member-img"><img src="../img/tomer.jpg" /></div>
+                    <div className="member-img"><img src="./img/tomer.jpg" /></div>
                     <div className="member-info">
                         <h1>Tomer Morad</h1>
                         <p>A fullstack developer student at Coding Academy.</p>
                     </div>
                 </div>
                 <div className="member">
-                    <div className="member-img"><img src="../img/tommy.jpg" /></div>
+                    <div className="member-img"><img src="./img/tommy.jpg" /></div>
                     <div className="member-info">
                         <h1>Tommy Irmia</h1>
                         <p>A fullstack developer student at Coding Academy.</p>

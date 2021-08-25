@@ -1,0 +1,73 @@
+.mail-nav {
+    margin-top: 20px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-nav img {
+    mix-blend-mode: multiply;
+}
+
+.mail-nav .compose {
+    width: 80%;
+    margin-inline-start: 20px;
+    margin-bottom: 20px;
+    height : 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-weight: 800;
+    border: 2px #f28482 inset;
+    border-radius: 2rem;
+    transition: .5s;
+}
+
+.mail-nav .compose:hover {
+    cursor: pointer;
+    color: #f28482;
+    mix-blend-mode: multiply;
+
+}
+
+.mail-nav .compose .add-img {
+    height: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.mail-nav .compose img {
+    height: 80%;
+}
+
+.nav-item {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    height: 40px;
+    padding: 30px 20px;
+    border-top-right-radius:3rem;
+    border-bottom-right-radius:3rem;
+    font-size: 1.1rem;
+    /* border-bottom: 3px #f28482 solid; */
+    transition: background-color 0.5s;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    background-color: #f28482;
+}
+
+.inbox-img {
+    width: 40px;
+}
+
+.nav-item.inbox {
+    height: 30px;
+}
+
+.nav-item img {
+    width: 100%;
+}
