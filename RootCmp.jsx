@@ -1,9 +1,10 @@
-const Router = ReactRouterDOM.HashRouter;``
+const Router = ReactRouterDOM.HashRouter; ``
 const { Route, Switch } = ReactRouterDOM;
 
 import { Home } from './pages/Home.jsx'
 import { AppHeader } from './cmps/app-header.jsx'
 import { AppFooter } from './cmps/app-footer.jsx'
+import { KeepApp } from './apps/tri-keep/pages/note-app.jsx'
 import { MailApp } from './apps/tri-mail/pages/mail-app.jsx'
 
 export function App() {
@@ -31,4 +32,3 @@ export function App() {
 
 
 
- 
