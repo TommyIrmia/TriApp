@@ -1,4 +1,5 @@
 .home {
+    font-family: poiret;
     padding: 50px;
     display: flex;
     flex-direction: column;
@@ -8,7 +9,7 @@
 
 .app-preview {
     width: 90%;
-    background-color: #d9fff5;
+    background-color: #a8dacd;
     padding: 30px;
     border-radius: 2rem;
     display: flex;
@@ -40,4 +41,41 @@
 
 .app-preview .app-info {
     width: 45%;
+}
+
+
+
+.team-head {
+    margin-top: 200px;
+    margin-bottom: -60px;
+}
+
+.team {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.team .member {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.team > .member:last-child {
+    flex-direction: row-reverse;
+}
+
+.team .member .member-img {
+    height: 200px;
+}
+.team .member .member-img img{
+    height: 100%;
+    border-radius: 50%;
+    border: 5px solid #a8dacd;
+}
+
+.team .member .member-info {
+    max-width: 200px;
 }

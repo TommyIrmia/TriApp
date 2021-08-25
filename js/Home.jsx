@@ -4,6 +4,7 @@ export function Home() {
 
     return (
         <main className="home">
+
             <div className="app-preview app1">
                 <div className="app-img"> here will be an img of the site</div>
                 <div className="app-info">
@@ -25,6 +26,24 @@ export function Home() {
                 <div className="app-info">
                     <h1>TriBook</h1>
                     <h3>An app that will contain all of your favorite books! add new books, filter thorugh them and ofcouse add reviews!</h3>
+                </div>
+            </div>
+
+            <h1 className="team-head">The Team</h1>
+            <div className="team">
+                <div className="member">
+                    <div className="member-img"><img src="../img/tomer.jpg" /></div>
+                    <div className="member-info">
+                        <h1>Tomer Morad</h1>
+                        <p>A fullstack developer student at Coding Academy.</p>
+                    </div>
+                </div>
+                <div className="member">
+                    <div className="member-img"><img src="../img/tommy.jpg" /></div>
+                    <div className="member-info">
+                        <h1>Tommy Irmia</h1>
+                        <p>A fullstack developer student at Coding Academy.</p>
+                    </div>
                 </div>
             </div>
         </main>
