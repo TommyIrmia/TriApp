@@ -1,4 +1,4 @@
-const { Link } = ReactRouterDOM;
+const { NavLink, Link } = ReactRouterDOM;
 
 export function AppHeader() {
     return (<section className="app-header">
@@ -7,9 +7,9 @@ export function AppHeader() {
             <h1>TriApp</h1>
         </Link>
         <div className="logos">
-            <Link to={'/mail'} className="mail-logo"><img src="./img/maillogo.png" /></Link>
-            <Link to={'/keep'} className="keep-logo"><img src="./img/keeplogo.png" /></Link>
-            <Link to={'/'} className="book-logo"><img src="./img/booklogo.png" /></Link>
+            <NavLink to={'/mail'} className="mail-logo"><img src="./img/maillogo.png" /></NavLink>
+            <NavLink to={'/keep'} className="keep-logo"><img src="./img/keeplogo.png" /></NavLink>
+            <NavLink to={'/book'} className="book-logo"><img src="./img/booklogo.png" /></NavLink>
         </div>
     </section>
     )

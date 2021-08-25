@@ -3,6 +3,9 @@ import { storageService } from '../../../services/storage.service.js'
 
 export const MailService = {
     query,
+    getDate,
+    getName,
+    toggleRead,
 }
 
 const loggedinUser = {
@@ -49,4 +52,26 @@ function _createInboxEmail(subject, body, from) {
         recievedAt: new Date(),
         from
     }
+}
+
+function getDate(date) {
+    const newDate = new Date(date);
+    const dates = newDate.toDateString().split(' ');
+
+    return dates[1] + ' ' + dates[2]
+}
+
+function getName(email) {
+    const deconstructedEmail = email.split('@');
+    return deconstructedEmail[0];
+}
+
+function toggleRead(emailId, isRead) {
+    const email = getEmailById(emailId)
+    email.isRead = isRead;
+    storageService.saveToStorage('InboxDB', gInboxEmails)
+}
+
+function getEmailById(id) {
+    return gInboxEmails.find(email => email.id === id);
 }

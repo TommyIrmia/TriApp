@@ -25,6 +25,7 @@
 @import './apps/mail/mail-app.css';
 @import './apps/mail/mail-list.css';
 @import './apps/mail/mail-nav.css';
-@import './apps/mail/mail-preview.css';
+@import './apps/mail/short-preview.css';
+@import './apps/mail/long-preview.css';
 
 /* APP BOOK */
