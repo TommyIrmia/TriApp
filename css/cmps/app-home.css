@@ -14,6 +14,7 @@
     border-radius: 2rem;
     display: flex;
     justify-content: space-between;
+    color: inherit;
 }
 
 .app-preview.app2 {
@@ -43,8 +44,6 @@
     width: 45%;
 }
 
-
-
 .team-head {
     margin-top: 200px;
     margin-bottom: -60px;
@@ -63,14 +62,15 @@
     text-align: center;
 }
 
-.team > .member:last-child {
+.team>.member:last-child {
     flex-direction: row-reverse;
 }
 
 .team .member .member-img {
     height: 200px;
 }
-.team .member .member-img img{
+
+.team .member .member-img img {
     height: 100%;
     border-radius: 50%;
     border: 5px solid #a8dacd;

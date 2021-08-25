@@ -5,3 +5,7 @@
 .grid {
     display: grid;
 }
+
+.clean {
+    text-decoration: none;
+}
