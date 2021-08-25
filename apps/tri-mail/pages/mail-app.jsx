@@ -1,4 +1,5 @@
-
+import { MailList } from "../cmps/mail-list.jsx";
+import { MailNav } from "../cmps/mail-nav.jsx";
 
 export class MailApp extends React.Component {
 
@@ -8,8 +9,8 @@ export class MailApp extends React.Component {
         return (
             <section className="mail-app">
                 {/* <MailFilter /> */}
-                {/* <MailNav /> */}
-                {/* <MailList /> */}
+                <MailNav />
+                <MailList />
             </section>
         )
     }
