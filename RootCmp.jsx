@@ -16,7 +16,7 @@ export function App() {
             <section className="main-layout">
                 <Switch>
                     {/* <Route path="/keep" component={KeepApp} /> */}
-                    {/* <Route path="/mail" component={MailApp} /> */}
+                    <Route path="/mail" component={MailApp} />
                     {/* <Route path="/book" component={BookApp} /> */}
                     <Route path="/" component={Home} />
                 </Switch>
