@@ -43,7 +43,7 @@ function _createNotes() {
                 id: "n102",
                 type: "note-img",
                 info: {
-                    url: "https://i.picsum.photos/id/933/200/280.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
+                    url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
                     title: "smoke on ground",
                 },
                 style: {
