@@ -4,6 +4,7 @@ const { Route, Switch } = ReactRouterDOM;
 import { Home } from './js/Home.jsx'
 import { AppHeader } from './js/cmps/app-header.jsx'
 import { AppFooter } from './js/cmps/app-footer.jsx'
+import { NoteApp } from './apps/note-app.jsx'
 
 export function App() {
     return (
@@ -14,7 +15,7 @@ export function App() {
 
             <section className="main-layout">
                 <Switch>
-                    {/* <Route path="/keep" component={KeepApp} /> */}
+                    <Route path="/keep" component={NoteApp} />
                     {/* <Route path="/mail" component={MailApp} /> */}
                     {/* <Route path="/book" component={BookApp} /> */}
                     <Route path="/" component={Home} />
