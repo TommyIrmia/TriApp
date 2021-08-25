@@ -1,26 +1,9 @@
 import {MailPreview} from './mail-preview.jsx'
 
-export function MailList () {
-
+export function MailList ({emails}) {
     return (
         <section className="mail-list flex">
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
-            <MailPreview />
+            {emails.map(email => <MailPreview key={email.id} email={email}/>)}
         </section>
     )
 }

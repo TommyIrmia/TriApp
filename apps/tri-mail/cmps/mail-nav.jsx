@@ -1,6 +1,6 @@
 
 export class MailNav extends React.Component {
-
+    
     render() {
         return (
             <section className="mail-nav">
