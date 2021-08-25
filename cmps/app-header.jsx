@@ -7,9 +7,9 @@ export function AppHeader() {
             <h1>TriApp</h1>
         </Link>
         <div className="logos">
-            <NavLink to={'/book'} className="book-logo"><img src="./img/booklogo.png" /></NavLink>
             <NavLink to={'/mail'} className="mail-logo"><img src="./img/maillogo.png" /></NavLink>
             <NavLink to={'/keep'} className="keep-logo"><img src="./img/keeplogo.png" /></NavLink>
+            <NavLink to={'/book'} className="book-logo"><img src="./img/booklogo.png" /></NavLink>
         </div>
     </section>
     )
