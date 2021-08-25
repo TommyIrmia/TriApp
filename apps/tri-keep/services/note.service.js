@@ -1,7 +1,7 @@
-import { utilService } from '../../../services/utilService.js'
-import { storageService } from '../../../services/storageService.js'
+// import { utilService } from '../../../services/utilService.js'
+import { storageService } from '../../../services/storage.service.js'
 
-export const keepService = {
+export const NoteService = {
     deleteNote,
     query,
     getNoteById,
@@ -9,7 +9,8 @@ export const keepService = {
 }
 
 const KEY = 'notesDB';
-var gNotes = [];
+var gNotes = []
+
 
 
 function deleteNote(noteId) {
@@ -25,9 +26,9 @@ function getNoteById(noteId) {
     return Promise.resolve(note)
 }
 
-_createnotes
+_createNotes()
 
-function _createnotes() {
+function _createNotes() {
     var notes = storageService.loadFromStorage(KEY);
     if (!notes || !notes.length) {
         notes = [{
@@ -42,34 +43,34 @@ function _createnotes() {
                 id: "n102",
                 type: "note-img",
                 info: {
-                    url: "http://some-img/me",
-                    title: "Bobi and Me"
+                    url: "https://i.picsum.photos/id/933/200/280.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
+                    title: "smoke on ground",
                 },
                 style: {
                     backgroundColor: "#00d"
                 }
             },
-            {
-                id: "n103",
-                type: "note-todos",
-                info: {
-                    label: "Get my stuff together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
-                    ]
-                }
-            }
+            // {
+            //     id: "n103",
+            //     type: "note-todos",
+            //     info: {
+            //         label: "Get my stuff together",
+            //         todos: [
+            //             { txt: "Driving liscence", doneAt: null },
+            //             { txt: "Coding power", doneAt: 187111111 }
+            //         ]
+            //     }
+            // }
         ]
     }
-    gBooks = [...books];
+    gNotes = [...notes];
     _saveNotesToStorage();
 }
 
 
 
 function _saveNotesToStorage() {
-    storageService.save(KEY, gNotes);
+    storageService.saveToStorage(KEY, gNotes);
 }
 
 function query() {

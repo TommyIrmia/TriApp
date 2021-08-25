@@ -1,0 +1,17 @@
+.note-img {
+    background-color: inherit;
+    width: 200px;
+    height: 280px;
+    border: 1px solid #bfbcbcb8;
+    border-radius: 0.8rem;
+}
+
+.note-img img {
+    height: inherit;
+    width: inherit;
+    border-radius: inherit;
+}
+
+.note-img:hover {
+    box-shadow: 0px 0px 9px 0px #686865ab;
+}

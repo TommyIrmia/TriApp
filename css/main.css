@@ -2,6 +2,14 @@
 @import './parts/helpers.css';
 @import './parts/base.css';
 @import './cmps/app-home.css';
+@import './apps/keep/note-txt.css';
+@import './apps/keep/note-img.css';
+
+/* @import './apps/keep/note-todos.css'; */
+
+
 /* @import './cmps/user-msg'; */
+
 @import './cmps/app-header.css';
 @import './cmps/app-footer.css';
+@import './cmps/note-add.css';
