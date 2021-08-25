@@ -2,6 +2,6 @@
 @import './parts/helpers.css';
 @import './parts/base.css';
 @import './cmps/app-home.css';
-@import './cmps/user-msg';
+/* @import './cmps/user-msg'; */
 @import './cmps/app-header.css';
 @import './cmps/app-footer.css';

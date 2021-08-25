@@ -1,9 +1,10 @@
-const Router = ReactRouterDOM.HashRouter;
+const Router = ReactRouterDOM.HashRouter;``
 const { Route, Switch } = ReactRouterDOM;
 
-import { Home } from './js/Home.jsx'
-import { AppHeader } from './js/cmps/app-header.jsx'
-import { AppFooter } from './js/cmps/app-footer.jsx'
+import { Home } from './pages/Home.jsx'
+import { AppHeader } from './cmps/app-header.jsx'
+import { AppFooter } from './cmps/app-footer.jsx'
+import { MailApp } from './apps/tri-mail/pages/mail-app.jsx'
 
 export function App() {
     return (
