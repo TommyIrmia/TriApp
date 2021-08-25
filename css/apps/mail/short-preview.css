@@ -14,7 +14,7 @@
 }
 
 .mail-preview .from {
-    width: 25%;
+    width: 30%;
 }
 
 .mail-preview h1 {
@@ -24,6 +24,7 @@
 
 .mail-preview.read, .mail-preview.read h1 {
     font-weight: 400;
+    background-color: rgb(240, 240, 240);
     color: gray;
     font-size: 1rem;
 }
@@ -41,6 +42,6 @@
 }
 
 .mail-preview .date {
-    width: 15%;
+    width: 10%;
     text-align: right;
 }

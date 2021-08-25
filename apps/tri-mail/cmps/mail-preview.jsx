@@ -1,8 +1,10 @@
-
+import { ShortPreview } from './short-preview.jsx'
+import { LongPreview } from './long-preview.jsx'
+import { MailService } from '../services/mail.service.js'
 
 export class MailPreview extends React.Component {
 
-    state ={
+    state = {
         isClicked: false,
     }
 
@@ -10,34 +12,22 @@ export class MailPreview extends React.Component {
         // console.log(this.props.email);
     }
 
-    getDate = (date) => {
-        const newDate = new Date(date);
-        const dates = newDate.toDateString().split(' ');
-
-        return dates[1] + ' ' + dates[2]
+    onToggleEmailPreview = (email) => {
+        MailService.toggleRead(email.id, true)
+        this.setState({ isClicked: !this.state.isClicked })
     }
 
-    getName = (email) => {
-        const deconstructedEmail = email.split('@');
-        return deconstructedEmail[0];
-    }
-
-    onToggleEmailPreview = () => {
-        this.setState({isClicked: !this.state.isClicked})
-    }
 
     render() {
-        const {email} = this.props;
-        const {isClicked} = this.state;
+        const { email } = this.props;
+        const { isClicked } = this.state;
         return (
-            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={() => this.onToggleEmailPreview()}>
-                <h1 className="from">{this.getName(email.from)}</h1>
-                <div className="mail-info">
-                    <h1>{email.subject} </h1>
-                    {isClicked && <p>{email.body}</p>}
-                </div>
-                <h1 className="date">{this.getDate(email.recievedAt)}</h1>
-            </section>
+            <React.Fragment>
+                {!isClicked && <ShortPreview email={email} onToggleEmailPreview={() => this.onToggleEmailPreview(email)} />}
+                {isClicked && <LongPreview email={email} onToggleEmailPreview={() => this.onToggleEmailPreview(email)}/>}
+            </React.Fragment>
+
+
         )
     }
 }
