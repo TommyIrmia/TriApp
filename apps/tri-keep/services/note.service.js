@@ -25,7 +25,7 @@ var gdeletedNotes = []
 // }
 
 function removeNote(noteId) {
-    var noteIdx = gNotes.findIndex(function(note) {
+    var noteIdx = gNotes.findIndex(function (note) {
         return noteId === note.id
     })
     gNotes.splice(noteIdx, 1)
@@ -59,12 +59,13 @@ function setColor(noteId, color) {
 
 }
 
-function setNotePin(noteId, condition) {
+function setNotePin(noteId) {
     getNoteById(noteId)
         .then(note => {
-            note.isPinned = condition;
+            note.isPinned = !note.isPinned;
             _saveNotesToStorage()
         })
+    return Promise.resolve();
 }
 
 _createNotes()
@@ -73,86 +74,86 @@ function _createNotes() {
     var notes = storageService.loadFromStorage(KEY);
     if (!notes || !notes.length) {
         notes = [{
-                id: "n101",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "Fullstack Me Baby!"
-                },
-                style: {
-                    backgroundColor: "rgb(229 227 74)"
-                }
+            id: "n101",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: "Fullstack Me Baby!"
             },
-            {
-                id: "n102",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "#00d"
-                }
+            style: {
+                backgroundColor: "rgb(229 227 74)"
+            }
+        },
+        {
+            id: "n102",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
+                title: "smoke on ground",
             },
-            {
-                id: "n103",
-                isPinned: false,
-                type: "note-todos",
-                info: {
-                    label: "Get my shit together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
-                    ]
-                }
+            style: {
+                backgroundColor: "#00d"
+            }
+        },
+        {
+            id: "n103",
+            isPinned: false,
+            type: "note-todos",
+            info: {
+                label: "Get my shit together",
+                todos: [
+                    { txt: "Driving liscence", doneAt: null },
+                    { txt: "Coding power", doneAt: 187111111 }
+                ]
+            }
+        },
+        {
+            id: "n104",
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "tommyyyyyyy stommmmmmm"
             },
-            {
-                id: "n104",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "tommyyyyyyy stommmmmmm"
-                },
-                style: {
-                    backgroundColor: "rgb(75 168 88)"
-                }
+            style: {
+                backgroundColor: "rgb(75 168 88)"
+            }
+        },
+        {
+            id: "n105",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
+                title: "smoke on ground",
             },
-            {
-                id: "n105",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "rgb(98 98 192)"
-                }
+            style: {
+                backgroundColor: "rgb(98 98 192)"
+            }
+        },
+        {
+            id: "n106",
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "im txt"
             },
-            {
-                id: "n106",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "im txt"
-                },
-                style: {
-                    backgroundColor: "rgb(98 98 192)"
-                }
+            style: {
+                backgroundColor: "rgb(98 98 192)"
+            }
+        },
+        {
+            id: "n107",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
+                title: "smoke on ground",
             },
-            {
-                id: "n107",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "#00d"
-                }
-            },
+            style: {
+                backgroundColor: "#00d"
+            }
+        },
         ]
     }
     gNotes = [...notes];
@@ -165,6 +166,13 @@ function _saveNotesToStorage() {
     storageService.saveToStorage(KEY, gNotes);
 }
 
-function query() {
-    return Promise.resolve(gNotes);
+function query(filterBy) {
+    console.log(filterBy);
+    if (!filterBy) {
+        const notes = gNotes.filter(note => !note.isPinned)
+        return Promise.resolve(notes)
+    } else {
+        const pinnedNotes = gNotes.filter(note => note.isPinned);
+        return Promise.resolve(pinnedNotes)
+    }
 }

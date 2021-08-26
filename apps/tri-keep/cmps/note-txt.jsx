@@ -1,5 +1,6 @@
 import { NoteService } from '../services/note.service.js'
 import { NoteActions } from './note-actions.jsx'
+
 export class NoteTxt extends React.Component {
 
 
@@ -8,7 +9,6 @@ export class NoteTxt extends React.Component {
         txt: '',
         isHover: false,
         color: '',
-        isPinned: false,
     }
 
     contentRef = React.createRef()
@@ -27,14 +27,6 @@ export class NoteTxt extends React.Component {
 
     }
 
-    onSetNotePin = (ev) => {
-        const { isPinned } = this.state;
-        const { note } = this.props
-        ev.stopPropagation();
-        this.setState({ isPinned: !isPinned })
-        NoteService.setNotePin(note.id, isPinned)
-    }
-
     onSetEdit = () => {
         this.setState({ isContentEditable: true });
     }
@@ -49,10 +41,10 @@ export class NoteTxt extends React.Component {
 
 
     render() {
-        const { note, onRemoveNote } = this.props;
-        const { isContentEditable, isHover, color, isPinned } = this.state;
+        const { note, onRemoveNote, onSetNotePin } = this.props;
+        const { isContentEditable, isHover, color } = this.state;
         return (
-            <section className='note-txt-container' className={(isPinned) ? 'pinned' : ''}
+            <section className='note-txt-container' className={(note.isPinned) ? 'pinned' : ''}
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })}>
                 <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>
@@ -60,7 +52,7 @@ export class NoteTxt extends React.Component {
                     className={`${note.type}  ${(isContentEditable) ? 'editable' : ''}`}
                     onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}>
                     <h1>{note.info.txt}</h1>
-                    {isHover && <NoteActions onSetNotePin={this.onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
+                    {isHover && <NoteActions onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </blockquote>
             </section>
 
