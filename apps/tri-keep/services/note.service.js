@@ -54,7 +54,6 @@ function setColor(noteId, color) {
     getNoteById(noteId)
         .then(note => {
             note.style.backgroundColor = color;
-            console.log('saving...', color, note);
             _saveNotesToStorage()
         })
 
@@ -64,8 +63,6 @@ function setNotePin(noteId, condition) {
     getNoteById(noteId)
         .then(note => {
             note.isPinned = condition;
-            console.log(condition);
-            console.log('note has pinned', note);
             _saveNotesToStorage()
         })
 }

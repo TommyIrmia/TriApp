@@ -32,7 +32,6 @@ export class NoteTxt extends React.Component {
         const { note } = this.props
         ev.stopPropagation();
         this.setState({ isPinned: !isPinned })
-        console.log('before saving', isPinned);
         NoteService.setNotePin(note.id, isPinned)
     }
 
@@ -52,7 +51,6 @@ export class NoteTxt extends React.Component {
     render() {
         const { note, onRemoveNote } = this.props;
         const { isContentEditable, isHover, color, isPinned } = this.state;
-        console.log('isPinned', isPinned);
         return (
             <section className='note-txt-container' className={(isPinned) ? 'pinned' : ''}
                 onMouseEnter={() => this.setState({ isHover: true })}
