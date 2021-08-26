@@ -17,12 +17,17 @@ export class NoteApp extends React.Component {
         .then((notes) =>{this.setState({notes})})
     }
 
+    onRemoveNote = (noteId) => {
+        NoteService.removeNote(noteId)
+        .then((notes) =>{this.setState({notes})})
+    }
+
     render(){
         const {notes} = this.state;
         return (
             <section className="note-app">
                 <NoteAdd/>
-                <NoteList notes={notes} />
+                <NoteList notes={notes} onRemoveNote={this.onRemoveNote} />
             </section>
         )
     }
