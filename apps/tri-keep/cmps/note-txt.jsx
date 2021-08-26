@@ -6,7 +6,6 @@ export class NoteTxt extends React.Component {
 
     state = {
         isContentEditable: false,
-        txt: '',
         isHover: false,
         color: '',
     }
@@ -35,7 +34,6 @@ export class NoteTxt extends React.Component {
         const { innerText } = this.contentRef.current;
         this.setState({ isContentEditable: false })
         NoteService.saveTxt(this.props.note.id, innerText)
-        this.setState({ txt: innerText });
     }
 
 
@@ -44,7 +42,7 @@ export class NoteTxt extends React.Component {
         const { note, onRemoveNote, onSetNotePin } = this.props;
         const { isContentEditable, isHover, color } = this.state;
         return (
-            <section className='note-txt-container' className={(note.isPinned) ? 'pinned' : ''}
+            <section className='note-txt-container' 
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })}>
                 <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>

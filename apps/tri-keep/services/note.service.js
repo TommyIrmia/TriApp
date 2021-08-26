@@ -8,6 +8,7 @@ export const NoteService = {
     removeNote,
     setColor,
     setNotePin,
+    saveImgTxt,
 
 }
 
@@ -25,7 +26,7 @@ var gdeletedNotes = []
 // }
 
 function removeNote(noteId) {
-    var noteIdx = gNotes.findIndex(function (note) {
+    var noteIdx = gNotes.findIndex(function(note) {
         return noteId === note.id
     })
     gNotes.splice(noteIdx, 1)
@@ -34,14 +35,21 @@ function removeNote(noteId) {
 }
 
 function saveTxt(noteId, val) {
-    var note = gNotes.find(note => {
-        return noteId === note.id
-    })
-    if (note.info.txt !== val) {
-        note.info.txt = val;
-        _saveNotesToStorage()
-    }
+    getNoteById(noteId)
+        .then(note => {
+            note.info.txt = val;
+            _saveNotesToStorage()
+        })
 }
+
+function saveImgTxt(noteId, val) {
+    getNoteById(noteId)
+        .then(note => {
+            note.info.title = val;
+            _saveNotesToStorage()
+        })
+}
+
 
 function getNoteById(noteId) {
     var note = gNotes.find(note => {
@@ -74,86 +82,86 @@ function _createNotes() {
     var notes = storageService.loadFromStorage(KEY);
     if (!notes || !notes.length) {
         notes = [{
-            id: "n101",
-            type: "note-txt",
-            isPinned: true,
-            info: {
-                txt: "Fullstack Me Baby!"
+                id: "n101",
+                type: "note-txt",
+                isPinned: true,
+                info: {
+                    txt: "Fullstack Me Baby!"
+                },
+                style: {
+                    backgroundColor: "rgb(229 227 74)"
+                }
             },
-            style: {
-                backgroundColor: "rgb(229 227 74)"
-            }
-        },
-        {
-            id: "n102",
-            isPinned: false,
-            type: "note-img",
-            info: {
-                url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
-                title: "smoke on ground",
+            {
+                id: "n102",
+                isPinned: false,
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "#00d"
+                }
             },
-            style: {
-                backgroundColor: "#00d"
-            }
-        },
-        {
-            id: "n103",
-            isPinned: false,
-            type: "note-todos",
-            info: {
-                label: "Get my shit together",
-                todos: [
-                    { txt: "Driving liscence", doneAt: null },
-                    { txt: "Coding power", doneAt: 187111111 }
-                ]
-            }
-        },
-        {
-            id: "n104",
-            type: "note-txt",
-            isPinned: false,
-            info: {
-                txt: "tommyyyyyyy stommmmmmm"
+            {
+                id: "n103",
+                isPinned: false,
+                type: "note-todos",
+                info: {
+                    label: "Get my shit together",
+                    todos: [
+                        { txt: "Driving liscence", doneAt: null },
+                        { txt: "Coding power", doneAt: 187111111 }
+                    ]
+                }
             },
-            style: {
-                backgroundColor: "rgb(75 168 88)"
-            }
-        },
-        {
-            id: "n105",
-            isPinned: false,
-            type: "note-img",
-            info: {
-                url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                title: "smoke on ground",
+            {
+                id: "n104",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "tommyyyyyyy stommmmmmm"
+                },
+                style: {
+                    backgroundColor: "rgb(75 168 88)"
+                }
             },
-            style: {
-                backgroundColor: "rgb(98 98 192)"
-            }
-        },
-        {
-            id: "n106",
-            type: "note-txt",
-            isPinned: false,
-            info: {
-                txt: "im txt"
+            {
+                id: "n105",
+                isPinned: false,
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "rgb(98 98 192)"
+                }
             },
-            style: {
-                backgroundColor: "rgb(98 98 192)"
-            }
-        },
-        {
-            id: "n107",
-            isPinned: false,
-            type: "note-img",
-            info: {
-                url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
-                title: "smoke on ground",
+            {
+                id: "n106",
+                type: "note-txt",
+                isPinned: false,
+                info: {
+                    txt: "im txt"
+                },
+                style: {
+                    backgroundColor: "rgb(98 98 192)"
+                }
             },
-            style: {
-                backgroundColor: "#00d"
-            }
-        },
+            {
+                id: "n107",
+                isPinned: false,
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "#00d"
+                }
+            },
         ]
     }
     gNotes = [...notes];
@@ -167,7 +175,6 @@ function _saveNotesToStorage() {
 }
 
 function query(filterBy) {
-    console.log(filterBy);
     if (!filterBy) {
         const notes = gNotes.filter(note => !note.isPinned)
         return Promise.resolve(notes)

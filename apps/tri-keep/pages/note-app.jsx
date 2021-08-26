@@ -36,8 +36,6 @@ export class NoteApp extends React.Component {
                 this.loadNotes();
                 this.loadPinnedNotes();
             })
-        console.log(this.state.notes);
-        console.log(this.state.pinnedNotes);
     }
 
     render() {
