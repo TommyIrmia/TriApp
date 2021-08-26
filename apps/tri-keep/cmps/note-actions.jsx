@@ -5,9 +5,13 @@ export class NoteActions extends React.Component {
         isPaletteOn: false,
     }
 
+    onOpenPalette = (ev) => {
+        ev.stopPropagation();
+        this.setState({ isPaletteOn: true })
+    }
 
     render() {
-        const {note,onRemoveNote} = this.props;
+        const {note,onRemoveNote,onChangeColor} = this.props;
         const {isPaletteOn} = this.state
         return (
             <section>
@@ -16,13 +20,11 @@ export class NoteActions extends React.Component {
                 }} className="far fa-trash-alt" ></button>
 
 
-                <button onClick={() => {
-                     this.setState({ isPaletteOn: true })
-                }} className="fas fa-palette"></button>
-
-
-                {isPaletteOn && <ColorInput/>}
                 <button className="fas fa-thumbtack"></button>
+                <button onClick={this.onOpenPalette} className="fas fa-palette"></button>
+
+
+                {isPaletteOn && <ColorInput onChangeColor={onChangeColor} />}
             </section>
         )
     }

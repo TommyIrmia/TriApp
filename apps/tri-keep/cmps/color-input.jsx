@@ -1,15 +1,16 @@
 
 
-export class ColorInput extends React.Component {
-    render(){
+export function ColorInput({onChangeColor}) {
 
-        return (
-            <section className="color-input flex" >
-                <div className="color red" ></div>
-                <div className="color green"></div>
-                <div className="color blue"></div>
-                <div className="color yellow"></div>
-            </section>
-        )
-    }
+    const colors = ['#FFAEBC', '#A0E7E5', '#B4F8C8', '#FBE7C6'];
+
+    return (
+        <section className="color-input flex" >
+                {colors.map(color => (
+                    <article key={color} onClick={(event)=>onChangeColor(event,color)}
+                    style={{ backgroundColor: color }} className="color"></article>
+                ))}
+
+        </section>
+    )
 }

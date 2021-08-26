@@ -6,6 +6,7 @@ export const NoteService = {
     getNoteById,
     saveTxt,
     removeNote,
+    setColor,
 
 }
 
@@ -48,6 +49,16 @@ function getNoteById(noteId) {
     return Promise.resolve(note)
 }
 
+function setColor(noteId, color) {
+    getNoteById(noteId)
+        .then(note => {
+            note.style.backgroundColor = color;
+            console.log('saving...', color, note);
+            _saveNotesToStorage()
+        })
+
+}
+
 _createNotes()
 
 function _createNotes() {
@@ -59,6 +70,9 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     txt: "Fullstack Me Baby!"
+                },
+                style: {
+                    backgroundColor: "rgb(229 227 74)"
                 }
             },
             {
@@ -89,6 +103,9 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     txt: "tommyyyyyyy stommmmmmm"
+                },
+                style: {
+                    backgroundColor: "rgb(75 168 88)"
                 }
             },
             {
@@ -99,7 +116,7 @@ function _createNotes() {
                     title: "smoke on ground",
                 },
                 style: {
-                    backgroundColor: "#00d"
+                    backgroundColor: "rgb(98 98 192)"
                 }
             },
             {
@@ -108,6 +125,9 @@ function _createNotes() {
                 isPinned: false,
                 info: {
                     txt: "im txt"
+                },
+                style: {
+                    backgroundColor: "rgb(98 98 192)"
                 }
             },
             {

@@ -1,21 +1,21 @@
-color-input {
+.color-input {
     gap: 5px;
 }
 
 .red {
-    background-color: red;
+    background-color: rgb(199, 69, 69);
 }
 
 .blue {
-    background-color: blue;
+    background-color: rgb(69, 69, 202);
 }
 
 .green {
-    background-color: green;
+    background-color: rgb(65, 180, 65);
 }
 
 .yellow {
-    background-color: yellow;
+    background-color: rgb(226, 226, 71);
 }
 
 .color {
@@ -23,4 +23,8 @@ color-input {
     height: 1rem;
     border-radius: 50%;
     border: 1px solid rgb(202, 200, 200);
+}
+
+.color:hover {
+    cursor: pointer;
 }
