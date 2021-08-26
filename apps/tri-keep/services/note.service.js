@@ -5,6 +5,7 @@ export const NoteService = {
     deleteNote,
     query,
     getNoteById,
+    saveTxt,
 
 }
 
@@ -17,6 +18,16 @@ function deleteNote(noteId) {
     gNotes = gNotes.filter(note => note.id !== noteId)
     _saveNotesToStorage()
     return Promise.resolve()
+}
+
+function saveTxt(noteId, val) {
+    var note = gNotes.find(note => {
+        return noteId === note.id
+    })
+    if (note.info.txt !== val) {
+        note.info.txt = val;
+        _saveNotesToStorage()
+    }
 }
 
 function getNoteById(noteId) {
