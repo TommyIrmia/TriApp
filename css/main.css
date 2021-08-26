@@ -24,6 +24,7 @@
 /* APP MAIL */
 
 @import './apps/mail/mail-app.css';
+@import './apps/mail/mail-filter.css';
 @import './apps/mail/mail-list.css';
 @import './apps/mail/mail-details.css';
 @import './apps/mail/mail-nav.css';

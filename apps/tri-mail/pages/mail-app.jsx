@@ -1,3 +1,4 @@
+import { MailFilter } from "../cmps/mail-filter.jsx";
 import { MailList } from "../cmps/mail-list.jsx";
 import { MailNav } from "../cmps/mail-nav.jsx";
 import { MailService } from "../services/mail.service.js";
@@ -7,6 +8,7 @@ export class MailApp extends React.Component {
     state = {
         emails: [],
         chosenEmail: null,
+        filterBy: null,
     }
 
     componentDidMount() {
@@ -14,7 +16,7 @@ export class MailApp extends React.Component {
     }
 
     loadEmails = () => {
-        MailService.query()
+        MailService.query(this.state.filterBy)
             .then(emails => {
                 this.setState({ emails })
             })
@@ -35,19 +37,23 @@ export class MailApp extends React.Component {
         this.loadEmails();
     }
 
+    
+  onSetFilter = (filterBy) => {
+    this.setState({ filterBy }, this.loadEmails);
+  };
+
 
     render() {
         const { emails } = this.state;
-        if (!emails.length) return <div>Loading...</div>;
         return (
             <section className="mail-app">
-                {/* <MailFilter /> */}
+                <MailFilter onSetFilter={this.onSetFilter}/>
                 <MailNav emails={emails} />
-                <MailList emails={emails}
+                {(emails.length) ? <MailList emails={emails}
                     onToggleRead={this.onToggleRead}
                     onDeleteEmail={this.onDeleteEmail}
                     loadEmails={this.loadEmails}
-                />
+                /> : !emails.length && <div>There are no emails in this file..</div>}
             </section>
         )
     }

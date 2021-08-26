@@ -16,9 +16,16 @@ const gLoggedinUser = {
     fullname: 'Hakuna Matata'
 }
 
-const gEmails = storageService.loadFromStorage('InboxDB') || _createInboxEmails();
+const gEmails = storageService.loadFromStorage('EmailsDB') || _createEmails();
 
-function query() {
+function query(filterBy) {
+    if (filterBy) {
+        const { word, read, unread } = filterBy;
+        const emailsToShow = gEmails.filter(email => {
+            return (email.subject.includes(word))
+        })
+        return Promise.resolve(emailsToShow)
+    }
     return Promise.resolve(gEmails)
 }
 
@@ -34,7 +41,7 @@ function toggleRead(emailId, isRead) {
         .then(email => {
             email.isRead = isRead;
         })
-    storageService.saveToStorage('InboxDB', gEmails)
+    storageService.saveToStorage('EmailsDB', gEmails)
 }
 
 function getEmailById(id) {
@@ -74,8 +81,8 @@ function _createEmail(subject, body, from, to) {
     }
 }
 
-function _createInboxEmails() {
-    const inboxEmails = [
+function _createEmails() {
+    const emails = [
         _createEmail('Credit Card Invoice', 'Look at your payments here', 'LeumiCard@leumi.co.il', gLoggedinUser.email),
         _createEmail('I LOVE YOU!', 'Please lets get back together', 'Lover@loveme.co.il', gLoggedinUser.email),
         _createEmail('Spam Spam Spam', 'This is a click bite email, I dare you', 'spammer@spam.com', gLoggedinUser.email),
@@ -99,6 +106,6 @@ function _createInboxEmails() {
         _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com', gLoggedinUser.email),
         _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedinUser.email),
     ]
-    storageService.saveToStorage('InboxDB', inboxEmails)
-    return inboxEmails
+    storageService.saveToStorage('EmailsDB', emails)
+    return emails
 }

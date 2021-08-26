@@ -42,6 +42,11 @@ export class MailDetails extends React.Component {
         this.onBack();
     }
 
+    onDeleteEmail = (email) => {
+        MailService.deleteEmail(email)
+        this.onBack();
+    }
+
     render() {
         const { emails, chosenEmail } = this.state;
         if (!chosenEmail) return <div>Loading..</div>
@@ -51,10 +56,15 @@ export class MailDetails extends React.Component {
                 <section className="mail-info">
                     <div className="top-btns">
                         <button className="back-btn" onClick={() => this.onBack()}>
-                            <img src="././img/back.png" /></button>
+                            <img src="././img/back.png" />
+                        </button>
                         <div>
-                            <button className="unread-btn" onClick={() => this.onToggleRead(chosenEmail)}><img src="././img/unread.png" /></button>
-                            <button className="delete-btn"><img src="././img/trash.png" /></button>
+                            <button className="unread-btn" onClick={() => this.onToggleRead(chosenEmail)}>
+                                <img src="././img/unread.png" />
+                            </button>
+                            <button className="delete-btn" onClick={() => this.onDeleteEmail(chosenEmail)}>
+                                <img src="././img/trash.png" />
+                            </button>
                         </div>
                     </div>
 
