@@ -11,7 +11,6 @@ render() {
 
     const DynamicCmp = (props) => {
         const {note} = props;
-        // console.log('tommy ha homo',note.type);
         switch (note.type) {
             case 'note-txt':
                 return <NoteTxt note={note}  />
