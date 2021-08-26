@@ -4,8 +4,8 @@ export function LongPreview({ email, onToggleEmailPreview }) {
     return (
         <section className="long-preview" onClick={() => onToggleEmailPreview()}>
             <div className="btns">
-                <button><img src="././img/trash.png" /></button>
                 <button><img src="././img/expand.png" /></button>
+                <button><img src="././img/trash.png" /></button>
             </div>
             <div>
                 <h1>{email.subject}</h1>

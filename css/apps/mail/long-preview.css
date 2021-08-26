@@ -19,18 +19,22 @@
     right: 5px;
 }
 
-.btns button {
+.long-preview .btns button {
+    background-color: inherit;
     height: 30px;
     width: 30px;
     padding: 5px;
     border-radius: 100%;
     border: 0;
-    background-color: #fabbba;
     margin-inline-end: 5px;
     cursor: pointer;
 }
 
-.btns button img {
+.long-preview .btns button:hover {
+    background-color: #fabbba;
+}
+
+.long-preview .btns button img {
     height: 100%;
     width: 100%;
     mix-blend-mode: multiply;
@@ -55,8 +59,8 @@
     padding: 10px;
 }
 
-.long-preview small{
-    padding:0px 10px;  
-    color: gray; 
-    text-align: right; 
+.long-preview small {
+    padding: 0px 10px;
+    color: gray;
+    text-align: right;
 }
