@@ -1,7 +1,14 @@
+import { MailService } from "../services/mail.service.js";
+
+
 
 export class MailNav extends React.Component {
+
     
+
+
     render() {
+        const { emails } = this.props;
         return (
             <section className="mail-nav">
                 <div className="compose">
@@ -9,7 +16,7 @@ export class MailNav extends React.Component {
                     Compose</div>
                 <div className="nav-item">
                     <div className="inbox-img"><img src="././img/inbox.png" /></div>
-                    Inbox</div>
+                    Inbox <span>{MailService.getNumOfUnread(emails)}</span></div>
                 <div className="nav-item">
                     <div className="star-img inbox-img"><img src="././img/star.jpg" /></div>
                     Starred</div>

@@ -5,25 +5,15 @@ import { MailService } from "../services/mail.service.js";
 export class ShortPreview extends React.Component {
     state = {
         isHover: false,
-        isRead: false,
     }
 
     componentDidMount() {
-        // console.log(this.props.email);
-        this.setState({isRead: this.props.email.isRead});
+        this.setState({ isRead: this.props.email.isRead });
     }
-
-    onToggleRead = (ev, email) => {
-        ev.stopPropagation();
-        MailService.toggleRead(email.id, !email.isRead)
-        this.setState({isRead: email.isRead})
-
-    }
-
 
     render() {
-        const { isHover, isRead } = this.state;
-        const { email, onToggleEmailPreview } = this.props;
+        const { isHover } = this.state;
+        const { email, onToggleEmailPreview, onToggleRead, onDeleteEmail } = this.props;
         return (
             <section className={`mail-preview ${email.isRead && 'read'}`} onClick={() => onToggleEmailPreview()}
                 onMouseEnter={() => this.setState({ isHover: true })}
@@ -35,10 +25,12 @@ export class ShortPreview extends React.Component {
                 {!isHover && <h1 className="date">{MailService.getDate(email.recievedAt)}</h1>}
                 {isHover &&
                     <div className="btns">
-                        <button className="read-btn" onClick={(event) => this.onToggleRead(event, email)}>
-                            <img src={`././img/${(isRead) ? 'un' : ''}read.png`} />
+                        <button className="read-btn" onClick={(event) => onToggleRead(event, email)}>
+                            <img src={`././img/${(email.isRead) ? 'un' : ''}read.png`} />
                         </button>
-                        <button className="trash-btn"><img src="././img/trash.png" /></button>
+                        <button className="trash-btn" onClick={(event) => onDeleteEmail(event, email)}>
+                            <img src="././img/trash.png" />
+                        </button>
                     </div>}
             </section>
         )
