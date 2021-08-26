@@ -1,10 +1,22 @@
+const { Link } = ReactRouterDOM
+
 import { MailService } from "../services/mail.service.js";
 
-export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail }) {
+export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail, onToggleRead }) {
     return (
-        <section className="long-preview" onClick={() => onToggleEmailPreview()}>
+        <section className="long-preview" onClick={() => onToggleEmailPreview(email, email.isRead)}>
             <div className="btns">
-                <button><img src="././img/expand.png" /></button>
+                <Link to={`mail/${email.id}`}>
+                    <button>
+                        <img src="././img/expand.png" />
+                    </button>
+                </Link>
+                <button className="read-btn" onClick={(event) => {
+                    onToggleEmailPreview(email, email.isRead)
+                    onToggleRead(event, email)
+                }}>
+                    <img src={`././img/${(email.isRead) ? 'un' : ''}read.png`} />
+                </button>
                 <button onClick={(event) => onDeleteEmail(event, email)} >
                     <img src="././img/trash.png" />
                 </button>

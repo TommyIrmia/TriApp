@@ -15,7 +15,7 @@ export class ShortPreview extends React.Component {
         const { isHover } = this.state;
         const { email, onToggleEmailPreview, onToggleRead, onDeleteEmail } = this.props;
         return (
-            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={() => onToggleEmailPreview()}
+            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={() => onToggleEmailPreview(email, true)}
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })} >
                 <h1 className="from">{MailService.getName(email.from)}</h1>

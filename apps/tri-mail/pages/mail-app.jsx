@@ -6,7 +6,7 @@ export class MailApp extends React.Component {
 
     state = {
         emails: [],
-
+        chosenEmail: null,
     }
 
     componentDidMount() {
@@ -35,6 +35,7 @@ export class MailApp extends React.Component {
         this.loadEmails();
     }
 
+
     render() {
         const { emails } = this.state;
         if (!emails.length) return <div>Loading...</div>;
@@ -42,7 +43,11 @@ export class MailApp extends React.Component {
             <section className="mail-app">
                 {/* <MailFilter /> */}
                 <MailNav emails={emails} />
-                <MailList emails={emails} onToggleRead={this.onToggleRead} onDeleteEmail={this.onDeleteEmail} />
+                <MailList emails={emails}
+                    onToggleRead={this.onToggleRead}
+                    onDeleteEmail={this.onDeleteEmail}
+                    loadEmails={this.loadEmails}
+                />
             </section>
         )
     }

@@ -12,9 +12,10 @@ export class MailPreview extends React.Component {
         // console.log(this.props.email);
     }
 
-    onToggleEmailPreview = (email) => {
-        MailService.toggleRead(email.id, true)
+    onToggleEmailPreview = (email, isRead) => {
+        MailService.toggleRead(email.id, isRead)
         this.setState({ isClicked: !this.state.isClicked })
+        this.props.loadEmails();
     }
 
 
@@ -23,14 +24,15 @@ export class MailPreview extends React.Component {
         const { isClicked } = this.state;
         return (
             <React.Fragment>
-                {!isClicked && <ShortPreview email={email} 
-                onToggleEmailPreview={() => this.onToggleEmailPreview(email)} 
-                onToggleRead={onToggleRead} 
-                onDeleteEmail={onDeleteEmail}
+                {!isClicked && <ShortPreview email={email}
+                    onToggleEmailPreview={this.onToggleEmailPreview}
+                    onToggleRead={onToggleRead}
+                    onDeleteEmail={onDeleteEmail}
                 />}
-                {isClicked && <LongPreview email={email} 
-                onToggleEmailPreview={() => this.onToggleEmailPreview(email)}
-                onDeleteEmail={onDeleteEmail}
+                {isClicked && <LongPreview email={email}
+                    onToggleEmailPreview={this.onToggleEmailPreview}
+                    onToggleRead={onToggleRead}
+                    onDeleteEmail={onDeleteEmail}
                 />}
             </React.Fragment>
 

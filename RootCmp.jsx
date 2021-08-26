@@ -6,6 +6,7 @@ import { AppHeader } from './cmps/app-header.jsx'
 import { AppFooter } from './cmps/app-footer.jsx'
 import { NoteApp } from './apps/tri-keep/pages/note-app.jsx'
 import { MailApp } from './apps/tri-mail/pages/mail-app.jsx'
+import { MailDetails } from './apps/tri-mail/pages/mail-details.jsx';
 
 export function App() {
     return (
@@ -17,6 +18,7 @@ export function App() {
             <section className="main-layout">
                 <Switch>
                     <Route path="/keep" component={NoteApp} />
+                    <Route path="/mail/:emailId" component={MailDetails} />
                     <Route path="/mail" component={MailApp} />
                     {/* <Route path="/book" component={BookApp} /> */}
                     <Route path="/" component={Home} />

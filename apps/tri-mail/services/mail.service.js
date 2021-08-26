@@ -7,10 +7,11 @@ export const MailService = {
     getName,
     toggleRead,
     getNumOfUnread,
-    deleteEmail
+    deleteEmail,
+    getEmailById
 }
 
-const loggedinUser = {
+const gLoggedinUser = {
     email: 'user@triApp.com',
     fullname: 'Hakuna Matata'
 }
@@ -24,22 +25,23 @@ function query() {
 function deleteEmail(emailToDlt) {
     const emailIdx = gEmails.findIndex(email => email.id === emailToDlt.id);
     gEmails.splice(emailIdx, 1)
-    storageService.saveToStorage('InboxDB' , gEmails);
+    storageService.saveToStorage('InboxDB', gEmails);
     return Promise.resolve(gEmails)
 }
 
 function toggleRead(emailId, isRead) {
     const email = getEmailById(emailId)
-    email.isRead = isRead;
+        .then(email => {
+            email.isRead = isRead;
+        })
     storageService.saveToStorage('InboxDB', gEmails)
 }
 
 function getEmailById(id) {
-    return gEmails.find(email => email.id === id);
+    return Promise.resolve(gEmails.find(email => email.id === id));
 }
 
 function getNumOfUnread(emails) {
-    console.log(emails);
     const unReadEmails = emails.filter(email => !email.isRead);
     return unReadEmails.length
 }
@@ -56,7 +58,7 @@ function getName(email) {
     return deconstructedEmail[0];
 }
 
-function _createEmail(subject, body, from) {
+function _createEmail(subject, body, from, to) {
     return {
         id: utilService.makeId(),
         subject,
@@ -67,23 +69,35 @@ function _createEmail(subject, body, from) {
         isDraft: false,
         isTrash: false,
         recievedAt: new Date(),
-        from
+        from,
+        to,
     }
 }
 
 function _createInboxEmails() {
     const inboxEmails = [
-        _createEmail('Credit Card Invoice', 'Look at your payments here', 'LeumiCard@leumi.co.il'),
-        _createEmail('I LOVE YOU!', 'Please lets get back together', 'Lover@loveme.co.il'),
-        _createEmail('Spam Spam Spam', 'This is a click bite email, I dare you', 'spammer@spam.com'),
-        _createEmail('Coding is AWESOME', 'All of this is hard coded dude!', 'CodimgAcademy@code.co.il'),
-        _createEmail('Job Application', 'You are accepted to our honorable institute', 'usaGov@gov.com'),
-        _createEmail('Commercial for soap', 'Here you will find the best soap ever!', 'Laline@laline.com'),
-        _createEmail('GIVE ME MY MONEY', 'YOU OWE ME ALOT OF MONEY CMON', 'tomermorad@gmail.com'),
-        _createEmail('Confirm your email address', 'Please confirm your address, it is not active', 'spotify@spot.co.il'),
-        _createEmail('Your invoice waits here', 'Hello, this is your invoice for the prev month', 'Bezeq@bezeq.co.il'),
-        _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com'),
-        _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il'),
+        _createEmail('Credit Card Invoice', 'Look at your payments here', 'LeumiCard@leumi.co.il', gLoggedinUser.email),
+        _createEmail('I LOVE YOU!', 'Please lets get back together', 'Lover@loveme.co.il', gLoggedinUser.email),
+        _createEmail('Spam Spam Spam', 'This is a click bite email, I dare you', 'spammer@spam.com', gLoggedinUser.email),
+        _createEmail('Coding is AWESOME', 'All of this is hard coded dude!', 'CodimgAcademy@code.co.il', gLoggedinUser.email),
+        _createEmail('Job Application', 'You are accepted to our honorable institute', 'usaGov@gov.com', gLoggedinUser.email),
+        _createEmail('Commercial for soap', 'Here you will find the best soap ever!', 'Laline@laline.com', gLoggedinUser.email),
+        _createEmail('GIVE ME MY MONEY', 'YOU OWE ME ALOT OF MONEY CMON', 'tomermorad@gmail.com', gLoggedinUser.email),
+        _createEmail('Confirm your email address', 'Please confirm your address, it is not active', 'spotify@spot.co.il', gLoggedinUser.email),
+        _createEmail('Your invoice waits here', 'Hello, this is your invoice for the prev month', 'Bezeq@bezeq.co.il', gLoggedinUser.email),
+        _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com', gLoggedinUser.email),
+        _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedinUser.email),
+        _createEmail('Credit Card Invoice', 'Look at your payments here', 'LeumiCard@leumi.co.il', gLoggedinUser.email),
+        _createEmail('I LOVE YOU!', 'Please lets get back together', 'Lover@loveme.co.il', gLoggedinUser.email),
+        _createEmail('Spam Spam Spam', 'This is a click bite email, I dare you', 'spammer@spam.com', gLoggedinUser.email),
+        _createEmail('Coding is AWESOME', 'All of this is hard coded dude!', 'CodimgAcademy@code.co.il', gLoggedinUser.email),
+        _createEmail('Job Application', 'You are accepted to our honorable institute', 'usaGov@gov.com', gLoggedinUser.email),
+        _createEmail('Commercial for soap', 'Here you will find the best soap ever!', 'Laline@laline.com', gLoggedinUser.email),
+        _createEmail('GIVE ME MY MONEY', 'YOU OWE ME ALOT OF MONEY CMON', 'tomermorad@gmail.com', gLoggedinUser.email),
+        _createEmail('Confirm your email address', 'Please confirm your address, it is not active', 'spotify@spot.co.il', gLoggedinUser.email),
+        _createEmail('Your invoice waits here', 'Hello, this is your invoice for the prev month', 'Bezeq@bezeq.co.il', gLoggedinUser.email),
+        _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com', gLoggedinUser.email),
+        _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedinUser.email),
     ]
     storageService.saveToStorage('InboxDB', inboxEmails)
     return inboxEmails

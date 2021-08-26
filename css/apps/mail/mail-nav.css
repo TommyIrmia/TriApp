@@ -51,7 +51,6 @@
     border-top-right-radius:3rem;
     border-bottom-right-radius:3rem;
     font-size: 1.1rem;
-    /* border-bottom: 3px #f28482 solid; */
     transition: background-color 0.5s;
 }
 
@@ -70,4 +69,9 @@
 
 .nav-item img {
     width: 100%;
+}
+
+.nav-item h4 {
+    flex-grow: 1;
+    text-align: right;
 }
