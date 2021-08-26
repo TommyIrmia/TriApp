@@ -3,10 +3,31 @@
     src: url("../../font-awesome/fa-regular-400.ttf")
 }
 
+@font-face {
+    font-family: "solid";
+    src: url("../../font-awesome/fa-solid-900.ttf")
+}
+
 .far::before {
     font-family: regular;
 }
 
+.fas::before {
+    font-family: "solid";
+}
+
 .far.fa-check-square::before {
     content: "\f14a";
+}
+
+.far.fa-trash-alt::before {
+    content: "\f2ed";
+}
+
+.fas.fa-palette::before {
+    content: "\f53f";
+}
+
+.fas.fa-thumbtack::before {
+    content: "\f08d";
 }
