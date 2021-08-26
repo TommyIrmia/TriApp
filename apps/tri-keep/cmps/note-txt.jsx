@@ -8,7 +8,6 @@ export class NoteTxt extends React.Component {
         txt: '',
         isHover: false,
         color: '',
-        isPinned: false,
     }
 
     contentRef = React.createRef()
@@ -27,13 +26,13 @@ export class NoteTxt extends React.Component {
 
     }
 
-    onSetNotePin = (ev) => {
-        const { isPinned } = this.state;
-        const { note } = this.props
-        ev.stopPropagation();
-        this.setState({ isPinned: !isPinned })
-        NoteService.setNotePin(note.id, isPinned)
-    }
+    // onSetNotePin = (ev) => {
+    //     const { isPinned } = this.state;
+    //     const { note } = this.props
+    //     ev.stopPropagation();
+    //     this.setState({ isPinned: !isPinned })
+    //     NoteService.setNotePin(note.id, isPinned)
+    // }
 
     onSetEdit = () => {
         this.setState({ isContentEditable: true });

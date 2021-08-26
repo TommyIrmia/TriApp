@@ -19,7 +19,7 @@ export class NoteActions extends React.Component {
                     onRemoveNote(note.id)
                 }} className="btn-action far fa-trash-alt" ></button>
 
-                <button onClick={onSetNotePin}className="btn-action fas fa-thumbtack"></button>
+                <button className="btn-action fas fa-thumbtack"></button>
 
                 <button onClick={this.onOpenPalette} className="btn-action fas fa-palette"></button>
 
