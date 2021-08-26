@@ -11,17 +11,17 @@ export class NoteActions extends React.Component {
     }
 
     render() {
-        const {note,onRemoveNote,onChangeColor} = this.props;
-        const {isPaletteOn} = this.state
+        const { note, onRemoveNote, onChangeColor,onSetNotePin } = this.props;
+        const { isPaletteOn } = this.state
         return (
             <section>
                 <button onClick={() => {
                     onRemoveNote(note.id)
-                }} className="far fa-trash-alt" ></button>
+                }} className="btn-action far fa-trash-alt" ></button>
 
+                <button onClick={onSetNotePin}className="btn-action fas fa-thumbtack"></button>
 
-                <button className="fas fa-thumbtack"></button>
-                <button onClick={this.onOpenPalette} className="fas fa-palette"></button>
+                <button onClick={this.onOpenPalette} className="btn-action fas fa-palette"></button>
 
 
                 {isPaletteOn && <ColorInput onChangeColor={onChangeColor} />}

@@ -25,9 +25,9 @@ export class NotePreview extends React.Component {
 
         const {note,onRemoveNote} = this.props;
         return (
-            <section>
+            <React.Fragment>
                 <DynamicCmp onRemoveNote={onRemoveNote}  note={note} />
-            </section>
+            </React.Fragment>
         )
     }
 

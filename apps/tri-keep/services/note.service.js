@@ -7,6 +7,7 @@ export const NoteService = {
     saveTxt,
     removeNote,
     setColor,
+    setNotePin,
 
 }
 
@@ -59,6 +60,16 @@ function setColor(noteId, color) {
 
 }
 
+function setNotePin(noteId, condition) {
+    getNoteById(noteId)
+        .then(note => {
+            note.isPinned = condition;
+            console.log(condition);
+            console.log('note has pinned', note);
+            _saveNotesToStorage()
+        })
+}
+
 _createNotes()
 
 function _createNotes() {
@@ -77,6 +88,7 @@ function _createNotes() {
             },
             {
                 id: "n102",
+                isPinned: false,
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
@@ -88,6 +100,7 @@ function _createNotes() {
             },
             {
                 id: "n103",
+                isPinned: false,
                 type: "note-todos",
                 info: {
                     label: "Get my shit together",
@@ -110,6 +123,7 @@ function _createNotes() {
             },
             {
                 id: "n105",
+                isPinned: false,
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
@@ -132,6 +146,7 @@ function _createNotes() {
             },
             {
                 id: "n107",
+                isPinned: false,
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
