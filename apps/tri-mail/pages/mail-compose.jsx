@@ -13,10 +13,29 @@ export class MailCompose extends React.Component {
         }
     }
 
+    componentDidMount() {
+        const { emailId, action } = this.props.match.params
+        console.log(emailId, action);
+        if (!emailId) return;
+        MailService.getEmailById(emailId)
+            .then(email => {
+                let { subject, from, cc, body } = email;
+                if (action === 'reply') subject = 'Re : ' + subject;
+                else {
+                    subject = 'Forwarded : ' + subject;
+                    from = ''
+                }
+                const seperator = '\n\n\n\n' + '*'.repeat(40) + '\n <From:' + email.from +'>\n\n'
+                body = seperator + body
+                this.setState(prevState => ({ email: { ...prevState.email, subject: subject, to: from, body, cc } }))
+            })
+
+
+    }
+
     handleChange = (ev) => {
         const field = ev.target.name;
         const value = ev.target.value;
-        console.log(field, value);
         this.setState((prevState) => ({ email: { ...prevState.email, [field]: value } }));
     };
 
@@ -35,7 +54,7 @@ export class MailCompose extends React.Component {
     }
 
     render() {
-        const { subject, to, cc, body } = this.state
+        const { subject, to, cc, body } = this.state.email
         return (
             <section className="mail-compose">
                 <MailNav />
@@ -78,16 +97,7 @@ export class MailCompose extends React.Component {
                             <img src="././img/send.png" />
                         </button>
                     </form>
-
-
-
-
-
                 </section>
-
-
-
-
             </section>
         )
     }

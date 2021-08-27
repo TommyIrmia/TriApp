@@ -19,7 +19,7 @@ export function App() {
             <section className="main-layout">
                 <Switch>
                     <Route path="/keep" component={NoteApp} />
-                    <Route path="/mail/new-compose" component={MailCompose} />
+                    <Route path="/mail/new-compose/:action?/:emailId?" component={MailCompose} />
                     <Route path="/mail/:emailId" component={MailDetails} />
                     <Route path="/mail" component={MailApp} />
                     {/* <Route path="/book" component={BookApp} /> */}

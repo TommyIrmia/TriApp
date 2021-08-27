@@ -13,7 +13,9 @@ export class MailDetails extends React.Component {
         this.loadEmail();
     }
 
-
+    componentWillUnmount() {
+        this.setState({chosenEmail: null})
+    }
 
     loadEmail = () => {
         const id = this.props.match.params.emailId
@@ -65,14 +67,14 @@ export class MailDetails extends React.Component {
                         <h2><span>From :</span> {MailService.getName(chosenEmail.from)} <small>'{chosenEmail.from}'</small></h2>
                         <h2><span>To :</span> {MailService.getName(chosenEmail.to)} <small>'{chosenEmail.to}'</small></h2> <br />
                         <p className="mail-body">
-                            {MailService.getBody(chosenEmail.body).map(txt => <small key={txt}>{txt} <br /></small>)}
+                            {MailService.getBody(chosenEmail.body).map((txt, idx) => <small key={idx}>{txt} <br /></small>)}
                         </p>
                         <small className="date">{MailService.getDate(chosenEmail.recievedAt)}</small>
                     </div>
 
                     <div className="bottom-btns">
-                        <Link to='/mail/new-compose'><button className="reply-btn"><img src="././img/reply.png" /></button></Link>
-                        <Link to='/mail/new-compose'><button className="forward-btn"><img src="././img/forward.png" /></button></Link>
+                        <Link to={`/mail/new-compose/reply/${chosenEmail.id}`}><button className="reply-btn"><img src="././img/reply.png" /></button></Link>
+                        <Link to={`/mail/new-compose/forward/${chosenEmail.id}`}><button className="forward-btn"><img src="././img/forward.png" /></button></Link>
                     </div>
 
                 </section>

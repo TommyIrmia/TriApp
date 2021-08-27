@@ -25,7 +25,9 @@ export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail, onTogg
                 <h1>{email.subject}</h1>
                 <h2>{MailService.getName(email.from)} <small>'{email.from}'</small></h2>
             </div>
-            <p>{email.body}</p>
+            <p className="mail-body">
+                {MailService.getBody(email.body).map((txt, idx) => <small key={idx}>{txt} <br /></small>)}
+            </p>
             <small>{MailService.getDate(email.recievedAt)} </small>
         </section>
     )
