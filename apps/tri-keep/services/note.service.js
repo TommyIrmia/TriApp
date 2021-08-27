@@ -114,8 +114,9 @@ function todoDone(noteId, todos, todoIdx) {
 // }
 
 
-function addNote(txt) {
-    const note = _createNote(txt)
+function addNote(inputInfo) {
+    console.log('inputInfo', inputInfo);
+    const note = _createNote(inputInfo.txt)
     gNotes.unshift(note);
     _saveNotesToStorage();
     return Promise.resolve(gNotes)

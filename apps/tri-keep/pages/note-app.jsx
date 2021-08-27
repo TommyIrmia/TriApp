@@ -38,9 +38,10 @@ export class NoteApp extends React.Component {
             })
     }
 
-    onAddNote = (txt) => {
-        if (!txt) return;
-        NoteService.addNote(txt)
+    onAddNote = (inputInfo) => {
+        console.log('inputInfo',inputInfo);
+        if (!inputInfo.txt) return;
+        NoteService.addNote(inputInfo)
         .then((notes) => { this.setState({ notes})})
     }
 
