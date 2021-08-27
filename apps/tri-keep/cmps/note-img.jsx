@@ -34,7 +34,7 @@ export class NoteImg extends React.Component {
     onUnEdit = () => {
         const { innerText } = this.contentRef.current;
         this.setState({ isContentEditable: false })
-        NoteService.saveImgTxt(this.props.note.id, innerText)
+        NoteService.saveTxt(this.props.note.id, innerText)
     }
 
      render() {
@@ -47,7 +47,8 @@ export class NoteImg extends React.Component {
                 <div onClick={this.onUnEdit}  className={(isContentEditable) ? 'screen' : ''}></div>
                 <section style={{ backgroundColor: color }}
                     className={`${note.type}  ${(isContentEditable) ? 'editable' : '' } `}
-                    onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable} >
+                    onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
+                    suppressContentEditableWarning={true} >
                      <img src={note.info.url} />
                      <h1> {note.info.title}</h1>
                     {isHover && <NoteActions onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}

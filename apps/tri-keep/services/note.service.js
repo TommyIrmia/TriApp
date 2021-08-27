@@ -1,4 +1,4 @@
-// import { utilService } from '../../../services/utilService.js'
+import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/storage.service.js'
 
 export const NoteService = {
@@ -8,7 +8,6 @@ export const NoteService = {
     removeNote,
     setColor,
     setNotePin,
-    saveImgTxt,
 
 }
 
@@ -37,18 +36,14 @@ function removeNote(noteId) {
 function saveTxt(noteId, val) {
     getNoteById(noteId)
         .then(note => {
-            note.info.txt = val;
+            if (note.type === 'note-txt') note.info.txt = val;
+            else if (note.type === 'note-img') note.info.title = val;
+
             _saveNotesToStorage()
         })
 }
 
-function saveImgTxt(noteId, val) {
-    getNoteById(noteId)
-        .then(note => {
-            note.info.title = val;
-            _saveNotesToStorage()
-        })
-}
+
 
 
 function getNoteById(noteId) {
@@ -111,9 +106,12 @@ function _createNotes() {
                 info: {
                     label: "Get my shit together",
                     todos: [
-                        { txt: "Driving liscence", doneAt: null },
-                        { txt: "Coding power", doneAt: 187111111 }
+                        { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
+                        { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
                     ]
+                },
+                style: {
+                    backgroundColor: "rgb(75 168 88)"
                 }
             },
             {

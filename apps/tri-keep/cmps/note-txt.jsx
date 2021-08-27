@@ -48,7 +48,8 @@ export class NoteTxt extends React.Component {
                 <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>
                 <blockquote style={{ backgroundColor: color }}
                     className={`${note.type}  ${(isContentEditable) ? 'editable' : ''}`}
-                    onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}>
+                    onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
+                    suppressContentEditableWarning={true}>
                     <h1>{note.info.txt}</h1>
                     {isHover && <NoteActions onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </blockquote>

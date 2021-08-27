@@ -31,3 +31,7 @@
 .fas.fa-thumbtack::before {
     content: "\f08d";
 }
+
+.far.fa-square::before {
+    content: "\f0c8";
+}
