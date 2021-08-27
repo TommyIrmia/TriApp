@@ -13,6 +13,10 @@
     padding-top: 6px;
 }
 
+.fonts-container {
+    gap: 10px;
+}
+
 .note-add button:hover {
     background-color: inherit;
     border: none;
@@ -29,7 +33,7 @@
     line-height: 1.25rem;
     background-color: inherit;
     height: inherit;
-    width: 80%;
+    width: 70%;
     padding: .5rem;
     resize: none;
 }

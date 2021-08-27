@@ -10,6 +10,8 @@ export const NoteService = {
     setNotePin,
     todoDone,
     allTodosDone,
+    _createNote,
+    addNote,
 
 }
 
@@ -110,6 +112,31 @@ function todoDone(noteId, todos, todoIdx) {
 //     const note = gNotes.find(note => note.id === noteId)
 //     return Promise.resolve(note)
 // }
+
+
+function addNote(txt) {
+    const note = _createNote(txt)
+    gNotes.unshift(note);
+    _saveNotesToStorage();
+    return Promise.resolve(gNotes)
+}
+
+
+function _createNote(txt, type) {
+    return {
+        id: utilService.makeId(),
+        type: 'note-txt',
+        isPinned: false,
+        info: {
+            txt,
+        },
+        style: {
+            backgroundColor: utilService.getRandomColor()
+        }
+    }
+}
+
+
 
 _createNotes()
 

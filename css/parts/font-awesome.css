@@ -35,3 +35,23 @@
 .far.fa-square::before {
     content: "\f0c8";
 }
+
+.fas.fa-pencil-alt::before {
+    content: "\f303";
+}
+
+.fas.fa-imag::before {
+    content: "\f03e";
+}
+
+.fas.fa-list::before {
+    content: "\f03a";
+}
+
+.fas.fa-star::before {
+    content: "\f005";
+}
+
+.far.fa-star::before {
+    content: "\f005";
+}

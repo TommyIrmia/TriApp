@@ -38,11 +38,17 @@ export class NoteApp extends React.Component {
             })
     }
 
+    onAddNote = (txt) => {
+        if (!txt) return;
+        NoteService.addNote(txt)
+        .then((notes) => { this.setState({ notes})})
+    }
+
     render() {
         const { notes, pinnedNotes } = this.state;
         return (
             <section className="note-app">
-                <NoteAdd />
+        <NoteAdd notes={notes} onAddNote={this.onAddNote} />
                 <NoteList notes={notes}
                     pinnedNotes={pinnedNotes}
                     onRemoveNote={this.onRemoveNote}
