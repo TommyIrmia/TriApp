@@ -25,12 +25,10 @@ export class MailCompose extends React.Component {
                     subject = 'Forwarded : ' + subject;
                     from = ''
                 }
-                const seperator = '\n\n\n\n' + '*'.repeat(40) + '\n <From:' + email.from +'>\n\n'
+                const seperator = '\n\n\n\n' + '*'.repeat(40) + '\n <From:' + email.from + '>\n\n'
                 body = seperator + body
                 this.setState(prevState => ({ email: { ...prevState.email, subject: subject, to: from, body, cc } }))
             })
-
-
     }
 
     handleChange = (ev) => {

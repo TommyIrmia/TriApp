@@ -7,27 +7,43 @@ export class MailApp extends React.Component {
 
     state = {
         emails: [],
-        chosenEmail: null,
         filterBy: null,
+        folder: 'inbox',
     }
 
     componentDidMount() {
         this.loadEmails();
     }
 
+    componentWillUnmount() {
+        this.setState({ emails: [], filterBy: null })
+    }
+
     loadEmails = () => {
-        MailService.query(this.state.filterBy)
+        MailService.getEmailsByFolder(this.state.folder)
             .then(emails => {
-                this.setState({ emails })
+                MailService.query(this.state.filterBy, emails)
+                    .then(emails => {
+                        console.log(emails);
+                        this.setState({ emails })
+                    })
             })
     }
 
     onDeleteEmail = (ev, email) => {
         ev.stopPropagation();
         MailService.deleteEmail(email)
-            .then(emails => {
-                this.setState({ emails })
+            .then(() => {
+                this.loadEmails()
             })
+    }
+
+    onStarEmail = (ev, email) => {
+        ev.stopPropagation();
+        console.log(email);
+        MailService.toggleStar(email.id)
+            .then(() => this.loadEmails())
+
     }
 
     onToggleRead = (ev, email) => {
@@ -37,23 +53,27 @@ export class MailApp extends React.Component {
         this.loadEmails();
     }
 
-
     onSetFilter = (filterBy) => {
         this.setState({ filterBy }, this.loadEmails);
     };
 
+    onSetFolder = (folder) => {
+        this.setState({ folder }, this.loadEmails);
+    }
 
     render() {
-        const { emails } = this.state;
+        const { emails, folder } = this.state;
         return (
             <section className="mail-app">
                 <MailFilter onSetFilter={this.onSetFilter} />
-                <MailNav />
-                {(emails.length) ? <MailList emails={emails}
-                    onToggleRead={this.onToggleRead}
-                    onDeleteEmail={this.onDeleteEmail}
-                    loadEmails={this.loadEmails}
-                /> : !emails.length && <div>There are no emails in this file..</div>}
+                <MailNav onSetFolder={this.onSetFolder} folder={folder} />
+                {(emails.length) ?
+                    <MailList emails={emails}
+                        onToggleRead={this.onToggleRead}
+                        onDeleteEmail={this.onDeleteEmail}
+                        onStarEmail={this.onStarEmail}
+                        loadEmails={this.loadEmails} />
+                    : <div>There are no emails in this file..</div>}
             </section>
         )
     }

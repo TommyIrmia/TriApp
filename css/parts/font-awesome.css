@@ -49,9 +49,12 @@
 }
 
 .fas.fa-star::before {
+    text-shadow: 0px 0px 5px rgb(0, 0, 0);
+    color: yellow;
     content: "\f005";
 }
 
 .far.fa-star::before {
+    color: gray;
     content: "\f005";
 }
