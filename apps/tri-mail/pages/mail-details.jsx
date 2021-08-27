@@ -6,21 +6,14 @@ const { Link } = ReactRouterDOM
 export class MailDetails extends React.Component {
 
     state = {
-        emails: [],
         chosenEmail: null,
     }
 
     componentDidMount() {
-        this.loadEmails();
         this.loadEmail();
     }
 
-    loadEmails = () => {
-        MailService.query()
-            .then(emails => {
-                this.setState({ emails })
-            })
-    }
+
 
     loadEmail = () => {
         const id = this.props.match.params.emailId
@@ -36,7 +29,6 @@ export class MailDetails extends React.Component {
     }
 
     onToggleRead = (email) => {
-        console.log(email);
         email.isRead = !email.isRead
         MailService.toggleRead(email.id, email.isRead)
         this.onBack();
@@ -48,11 +40,11 @@ export class MailDetails extends React.Component {
     }
 
     render() {
-        const { emails, chosenEmail } = this.state;
+        const { chosenEmail } = this.state;
         if (!chosenEmail) return <div>Loading..</div>
         return (
             <main className="mail-details">
-                <MailNav emails={emails} />
+                <MailNav />
                 <section className="mail-info">
                     <div className="top-btns">
                         <button className="back-btn" onClick={() => this.onBack()}>
@@ -71,19 +63,21 @@ export class MailDetails extends React.Component {
                     <div className="mail-body">
                         <h1>{chosenEmail.subject}</h1>
                         <h2><span>From :</span> {MailService.getName(chosenEmail.from)} <small>'{chosenEmail.from}'</small></h2>
-                        <h2><span>To :</span> {MailService.getName(chosenEmail.to)} <small>'{chosenEmail.to}'</small></h2>
-                        <p>{chosenEmail.body}</p>
+                        <h2><span>To :</span> {MailService.getName(chosenEmail.to)} <small>'{chosenEmail.to}'</small></h2> <br />
+                        <p className="mail-body">
+                            {MailService.getBody(chosenEmail.body).map(txt => <small key={txt}>{txt} <br /></small>)}
+                        </p>
                         <small className="date">{MailService.getDate(chosenEmail.recievedAt)}</small>
                     </div>
 
                     <div className="bottom-btns">
-                        <button className="reply-btn"><img src="././img/reply.png" /></button>
-                        <button className="forward-btn"><img src="././img/forward.png" /></button>
+                        <Link to='/mail/new-compose'><button className="reply-btn"><img src="././img/reply.png" /></button></Link>
+                        <Link to='/mail/new-compose'><button className="forward-btn"><img src="././img/forward.png" /></button></Link>
                     </div>
 
                 </section>
 
-            </main>
+            </main >
         )
     }
 }

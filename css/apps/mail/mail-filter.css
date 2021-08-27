@@ -12,6 +12,7 @@
     background-color: white;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
+    border-right: 1px lightgray solid;
 }
 
 .mail-filter .search-img img {
@@ -25,10 +26,16 @@
     height: 40px;
     border: 0;
     padding: 0 10px;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
 }
 
-.mail-filter input:focus {
+.mail-filter input:focus, .mail-filter select:focus {
     outline: 0;
+}
+
+.mail-filter select {
+    padding-left: 10px;
+    border: 0;
+    border-left: 1px lightgray solid;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }

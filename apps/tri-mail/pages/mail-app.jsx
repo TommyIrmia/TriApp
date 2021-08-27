@@ -37,18 +37,18 @@ export class MailApp extends React.Component {
         this.loadEmails();
     }
 
-    
-  onSetFilter = (filterBy) => {
-    this.setState({ filterBy }, this.loadEmails);
-  };
+
+    onSetFilter = (filterBy) => {
+        this.setState({ filterBy }, this.loadEmails);
+    };
 
 
     render() {
         const { emails } = this.state;
         return (
             <section className="mail-app">
-                <MailFilter onSetFilter={this.onSetFilter}/>
-                <MailNav emails={emails} />
+                <MailFilter onSetFilter={this.onSetFilter} />
+                <MailNav />
                 {(emails.length) ? <MailList emails={emails}
                     onToggleRead={this.onToggleRead}
                     onDeleteEmail={this.onDeleteEmail}

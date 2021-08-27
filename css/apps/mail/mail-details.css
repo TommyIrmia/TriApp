@@ -6,6 +6,7 @@
 }
 
 .mail-details .mail-info {
+    margin-top: 20px;
     border-top: 1px solid #e9bebd;
     border-bottom: 1px solid #e9bebd;
     /* padding: 20px 40px; */

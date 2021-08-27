@@ -2,8 +2,7 @@ export class MailFilter extends React.Component {
     state = {
         filterBy: {
             word: '',
-            read: '',
-            unread: '',
+            type: 'all',
         },
     };
 
@@ -28,9 +27,9 @@ export class MailFilter extends React.Component {
     };
 
     render() {
-        const { word, read, unread } = this.state.filterBy;
+        const { word } = this.state.filterBy;
         return (
-            <form className='mail-filter' onSubmit={this.onFilter}>
+            <form className='mail-filter flex' onSubmit={this.onFilter}>
                 <label htmlFor='by-word' className="flex">
                     <div className="search-img">
                         <img src="././img/search.png" />
@@ -41,6 +40,13 @@ export class MailFilter extends React.Component {
                         onChange={this.handleChange}
                     />
                 </label>
+
+                <select name="type" onChange={this.handleChange}>
+                    <option value="all">All</option>
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                </select>
+
             </form>
         );
     }

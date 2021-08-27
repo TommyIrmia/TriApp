@@ -9,6 +9,10 @@
     mix-blend-mode: multiply;
 }
 
+.mail-nav a {
+    color: #f28482;
+}
+
 .mail-nav .compose {
     width: 80%;
     margin-inline-start: 20px;
@@ -26,8 +30,8 @@
 
 .mail-nav .compose:hover {
     cursor: pointer;
-    color: #f28482;
-    mix-blend-mode: multiply;
+    color: #ff3c39;
+    background-color: #ffbebe;
 
 }
 

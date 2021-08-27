@@ -4,14 +4,12 @@
 @import './parts/font-awesome.css';
 @import './parts/helpers.css';
 @import './parts/base.css';
-
 /* CMPS */
 
 @import './cmps/app-home.css';
 @import './cmps/app-header.css';
 @import './cmps/app-footer.css';
 @import './cmps/note-add.css';
-
 /* APP NOTE */
 
 @import './apps/keep/note-app.css';
@@ -21,15 +19,14 @@
 @import './apps/keep/note-todos.css';
 @import './apps/keep/color-input.css';
 @import './apps/keep/app-notes.css';
-
 /* APP MAIL */
 
 @import './apps/mail/mail-app.css';
 @import './apps/mail/mail-filter.css';
 @import './apps/mail/mail-list.css';
+@import './apps/mail/mail-compose.css';
 @import './apps/mail/mail-details.css';
 @import './apps/mail/mail-nav.css';
 @import './apps/mail/short-preview.css';
 @import './apps/mail/long-preview.css';
-
 /* APP BOOK */
