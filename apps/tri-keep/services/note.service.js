@@ -8,6 +8,8 @@ export const NoteService = {
     removeNote,
     setColor,
     setNotePin,
+    todoDone,
+    allTodosDone,
 
 }
 
@@ -43,7 +45,9 @@ function saveTxt(noteId, val) {
         })
 }
 
-
+function _getNoteIdxById(noteId) {
+    return gNotes.findIndex(note => note.id === noteId)
+}
 
 
 function getNoteById(noteId) {
@@ -70,6 +74,42 @@ function setNotePin(noteId) {
         })
     return Promise.resolve();
 }
+
+
+function allTodosDone(noteId) {
+    getNoteById(noteId)
+        .then(note => {
+            note.isDone = !note.isDone;
+            _saveNotesToStorage()
+        })
+}
+
+function todoDone(noteId, todos, todoIdx) {
+    getNoteById(noteId)
+        .then(note => {
+            note.info.todos[todoIdx].doneAt = todos[todoIdx].doneAt
+            _saveNotesToStorage()
+        })
+}
+
+
+// function todoDone(noteId,todos) {
+//     const noteIdx = _getNoteIdxById(noteId)
+//     const notes = [...gNotes]
+//     notes[noteIdx].info.todos = todos
+//     let todosToTxt = '';
+//     todos.forEach(todo => {
+//         todosToTxt += todo.txt + ', '
+//     })
+//     notes[noteIdx].info.txt = todosToTxt
+//     gNotes = notes
+//     _saveNotesToStorage()
+//     return Promise.resolve()
+// }
+// function getNoteById(noteId) {
+//     const note = gNotes.find(note => note.id === noteId)
+//     return Promise.resolve(note)
+// }
 
 _createNotes()
 
@@ -103,6 +143,7 @@ function _createNotes() {
                 id: "n103",
                 isPinned: false,
                 type: "note-todos",
+                isDone: 'false',
                 info: {
                     label: "Get my shit together",
                     todos: [

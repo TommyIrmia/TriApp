@@ -7,6 +7,7 @@ export class NoteTodos extends React.Component {
         isContentEditable: false,
         isHover: false,
         color: '',
+        todos: [],
         isDone: false,
     }
 
@@ -15,8 +16,11 @@ export class NoteTodos extends React.Component {
 
     componentDidMount() {
         const { backgroundColor } = this.props.note.style;
-        const { isPinned } = this.props.note;
+        const { isPinned,info } = this.props.note;
+        const {isDone} =this.props.note
         this.setState({ color: backgroundColor, isPinned })
+        this.setState({ todos:info.todos})
+        this.setState({isDone})
     }
 
     onChangeColor = (ev, color) => {
@@ -34,17 +38,29 @@ export class NoteTodos extends React.Component {
     onUnEdit = () => {
         const { innerText } = this.contentRef.current;
         this.setState({ isContentEditable: false })
-        NoteService.saveTxt(this.props.note.id, innerText)
+        // NoteService.saveTxt(this.props.note.id, innerText)
     }
 
 
-    checkBoxClick = (ev) => {
+    onAllTodosDone = (ev) => {
         ev.stopPropagation();
+        const noteId = this.props.note.id
         const {isDone} = this.state;
-        setState({ isDone:!isDone})
+        this.setState({ isDone:!isDone})
+        NoteService.allTodosDone(noteId)
     }
 
-    
+    onTodoDone = (ev,todoId) => {
+        ev.stopPropagation();
+        const {todos} = this.state;
+        const noteId = this.props.note.id
+        const todoIdx = todos.findIndex(todo => todo.id === todoId)
+        const todosCopy = [...this.state.todos]
+        if (todosCopy[todoIdx].doneAt) todosCopy[todoIdx].doneAt = null
+        else todosCopy[todoIdx].doneAt = Date.now();
+        this.setState({ todos: todosCopy });
+        NoteService.todoDone(noteId,todos,todoIdx)
+    }
    
 
 render() {
@@ -60,10 +76,16 @@ render() {
                 className={`${note.type}  ${(isContentEditable) ? 'editable' : ''}`}
                 onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
                 suppressContentEditableWarning={true}>
-                <h3>{info.label} <button onClick={this.checkBoxClick} className="far fa-square" ></button> </h3>
+
+
+                <h3 className={(isDone)? 'line-through' : ''} >{info.label}
+                 <button onClick={this.onAllTodosDone} className={(isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </h3>
                 {info.todos.map((todo)  =>{
                     return <React.Fragment key={todo.id} >
-                        <p>{todo.txt} <button className="far fa-square" ></button> </p>
+                        <p className={(todo.doneAt || isDone)? 'line-through' : ''}  >{todo.txt} 
+                        <button onClick={(ev)=>{
+                            this.onTodoDone(ev,todo.id);
+                        }} className={(todo.doneAt || isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </p>
                     </React.Fragment>
                 })}
                 
