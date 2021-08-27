@@ -16,9 +16,9 @@ export class NotePreview extends React.Component {
                 case 'note-txt':
                     return <NoteTxt onRemoveNote={onRemoveNote} note={note} onSetNotePin={onSetNotePin} />
                 case 'note-img':
-                    return <NoteImg note={note} />
+                    return <NoteImg onRemoveNote={onRemoveNote} note={note} onSetNotePin={onSetNotePin} />
                 case 'note-todos':
-                    return <NoteTodos note={note} />
+                    return <NoteTodos onRemoveNote={onRemoveNote} note={note} onSetNotePin={onSetNotePin} />
             }
         }
 

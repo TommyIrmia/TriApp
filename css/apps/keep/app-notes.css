@@ -1,9 +1,8 @@
 .editable {
-    transform: scale(2.9);
+    /* transform: scale(1.5); */
     position: fixed;
-    top: 50%;
-    left: 50%;
-    /* background-color: #f5f5f5; */
+    top: 35%;
+    left: 40%;
     font-size: 0.85em;
     transition: transform .4s;
 }
@@ -20,10 +19,6 @@
 
 .screen:hover {
     cursor: pointer;
-}
-
-.pinned {
-    order: -1;
 }
 
 .btn-action {

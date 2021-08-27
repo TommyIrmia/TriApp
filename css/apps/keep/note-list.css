@@ -3,3 +3,8 @@
     flex-wrap: wrap;
     flex-direction: column;
 }
+
+.unpinned-note-list {
+    gap: 25px;
+    flex-wrap: wrap;
+}
