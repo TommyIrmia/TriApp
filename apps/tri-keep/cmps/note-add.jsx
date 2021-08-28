@@ -2,7 +2,7 @@ export class NoteAdd extends React.Component {
 
 state={
     inputInfo:{
-        type:'note-text',
+        type:'note-txt',
         placeholder: 'Write a note...',
         txt: '',
     }
@@ -12,7 +12,6 @@ state={
   handleChange = (ev) => {
     const field = ev.target.name;
     const val = ev.target.value;
-    console.log(val);
     this.setState({txt: val});
     this.setState({ inputInfo: { ...this.state.inputInfo, [field]:val } })
   }
@@ -48,7 +47,7 @@ state={
             <div className="note-add">
                 <div className="txt-container" >
                 <label htmlFor="note-txt"></label>
-                <textarea ref={this.refArea} type="textarea" id="note-txt" name={txt} 
+                <textarea ref={this.refArea} type="textarea" id="note-txt" name='txt' 
                 value={txt} placeholder={placeholder} onChange={this.handleChange} />
                 <button  onClick={()=>{
                     onAddNote(inputInfo)

@@ -10,7 +10,7 @@ export const NoteService = {
     setNotePin,
     todoDone,
     allTodosDone,
-    _createNote,
+    _createNote: _createNoteTxt,
     addNote,
 
 }
@@ -115,15 +115,17 @@ function todoDone(noteId, todos, todoIdx) {
 
 
 function addNote(inputInfo) {
-    console.log('inputInfo', inputInfo);
-    const note = _createNote(inputInfo.txt)
+    const { txt } = inputInfo;
+    let note;
+    if (inputInfo.type === 'note-txt') note = _createNoteTxt(txt)
+    else if (inputInfo.type === 'note-img') note = _createNoteImg(txt)
+    else note = _createNoteTodos(txt)
     gNotes.unshift(note);
     _saveNotesToStorage();
     return Promise.resolve(gNotes)
 }
 
-
-function _createNote(txt, type) {
+function _createNoteTxt(txt) {
     return {
         id: utilService.makeId(),
         type: 'note-txt',
@@ -135,6 +137,77 @@ function _createNote(txt, type) {
             backgroundColor: utilService.getRandomColor()
         }
     }
+}
+
+function _createNoteImg(url) {
+    return {
+        id: utilService.makeId(),
+        isPinned: false,
+        type: "note-img",
+        info: {
+            url,
+            title: "",
+        },
+        style: {
+            backgroundColor: utilService.getRandomColor()
+        }
+    }
+}
+
+// function _createNoteTodos(txt) {
+//     const noteToUpdateIdx = getNoteIdxById(noteId)
+//     const notes = [...gNotes]
+//     notes[noteToUpdateIdx].info.todos = todos
+//     let todosToTxt = '';
+//     todos.forEach(todo => {
+//         todosToTxt += todo.txt + ', '
+//     })
+//     notes[noteToUpdateIdx].info.txt = todosToTxt
+//     gNotes = notes
+//     _saveNotesToStorage()
+//     return Promise.resolve()
+// }
+
+function getNoteById(noteId) {
+    const note = gNotes.find(note => note.id === noteId)
+    return Promise.resolve(note)
+}
+
+function getNoteIdxById(noteId) {
+    return gNotes.findIndex(note => note.id === noteId)
+}
+
+
+function _createNoteTodos(txt) {
+
+
+    const notesTodos = {
+        type: 'note-todos',
+        id: utilService.makeId(),
+        isPinned: false,
+        isDone: false,
+        info: {},
+        style: {
+            backgroundColor: utilService.getRandomColor(),
+        }
+
+    }
+
+
+    const todos = []
+    console.log(txt);
+    notesTodos.info.txt = txt
+    const userTodos = txt.split(',')
+    userTodos.forEach(todo => {
+        todos.push({
+            txt: todo,
+            doneAt: null,
+            id: utilService.makeId()
+        })
+    })
+
+    notesTodos.info.todos = todos
+    return notesTodos;
 }
 
 
@@ -173,7 +246,7 @@ function _createNotes() {
                 type: "note-todos",
                 isDone: 'false',
                 info: {
-                    label: "Get my shit together",
+                    txt: "Get my shit together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
                         { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
