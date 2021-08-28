@@ -35,3 +35,5 @@
 @import './apps/mail/long-preview.css';
 
 /* APP BOOK */
+
+@import './apps/book/main.css'
