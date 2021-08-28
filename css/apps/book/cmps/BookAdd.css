@@ -6,7 +6,7 @@
 }
 
 .book-add input {
-    border: 1px solid lightpink;
+    border: 1px solid #f3b249;
     font-size: 1.2rem;
     padding: 0 30px;
     height: 40px;
@@ -24,7 +24,7 @@
     padding: 0;
     list-style-type: none;
     margin-block-start: 0;
-    background-color: #f5cac3;
+    background-color: #fae6c6;
 }
 
 .option {
@@ -35,12 +35,12 @@
 }
 
 .options-list > .option:not(:last-child) {
-    border-bottom: 3px #f5aca1 solid;
+    border-bottom: 3px #f0c47f solid;
 }
 
 .option button {
     border: 0;
-    background-color: #fa907f;
+    background-color: #f6bd60;
     color: whitesmoke;
     font-size: 1.2rem;
     font-weight: 700;
