@@ -1,17 +1,43 @@
 import { MailService } from "../services/mail.service.js";
-
+import { LongTxt } from "../../../cmps/long-txt.jsx"
 
 
 export class ShortPreview extends React.Component {
     state = {
         isHover: false,
+        txtLength: 20,
+    }
+
+
+    componentDidMount() {
+        window.addEventListener('resize', this.getTextLength)
+
+    }
+
+
+    getTextLength = () => {
+        let length = this.getWindowSize()
+        this.setState({ txtLength: length })
+    }
+
+
+    getWindowSize = () => {
+        const windowSize = window.innerWidth
+        if (windowSize > 1600) return 60
+        if (windowSize > 1400) return 50
+        if (windowSize > 1200) return 40
+        if (windowSize > 1000) return 30
+        if (windowSize > 800) return 20
+        if (windowSize > 600) return 10
+        return 5
     }
 
     render() {
-        const { isHover } = this.state;
+
+        const { isHover, txtLength } = this.state;
         const { email, onToggleEmailPreview, onToggleRead, onDeleteEmail, onStarEmail } = this.props;
         return (
-            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={(event) => {
+            <section className={`mail-preview ${(email.isRead) ? 'read' : ''}`} onClick={(event) => {
                 onToggleEmailPreview()
                 onToggleRead(event, email, true)
             }}
@@ -22,7 +48,8 @@ export class ShortPreview extends React.Component {
                 ></div>
                 <h1 className="from">{MailService.getName(email.from)}</h1>
                 <div className="mail-info">
-                    <h1>{email.subject} </h1>
+                    <h1>{email.subject} - </h1>
+                    <p><LongTxt txt={email.body} txtLength={txtLength} /></p>
                 </div>
                 {!isHover && <h1 className="date">{MailService.getDate(email.recievedAt)}</h1>}
                 {isHover &&

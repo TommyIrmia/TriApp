@@ -10,8 +10,9 @@
     position: fixed;
     background-color: whitesmoke;
     z-index: 3;
-    top: 80px;
-    left: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 75%;
     width: 80%;
     box-shadow: 0 0 5px 0px #f6aaa9;
@@ -19,8 +20,8 @@
 
 .compose-container .compose-header {
     background-color: #f6aaa9;
-    padding: 5px;
-    border: black 1px solid;
+    padding: 15px;
+    border: #f28482 1px solid;
     color: whitesmoke;
     font-weight: 700;
     font-size: 1.2rem;
@@ -37,7 +38,7 @@
     border: 0;
     background-color: inherit;
     border-bottom: 1px #f6aaa9 solid;
-    padding: 5px 10px;
+    padding: 10px 10px;
 }
 
 .compose-container input:focus {
@@ -99,4 +100,14 @@
 .compose-screen.open {
     pointer-events: all;
     opacity: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .compose-container {
+        top: 50%;
+        height: 95%;
+        width: 95%;
+        z-index: 5;
+    }
 }

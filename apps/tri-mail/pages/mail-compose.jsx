@@ -21,12 +21,12 @@ export class MailCompose extends React.Component {
     timeoutId;
 
     componentDidMount() {
+        this.timeoutId = setTimeout(() => this.setState({ isOpen: true }), 0)
         this.setInputs();
         this.draftInterval = setInterval(this.saveDraft, 1000)
     }
 
     componentWillUnmount() {
-        this.timeoutId = setTimeout(() => this.setState({ isOpen: true }), 0)
         clearTimeout(this.timeoutId);
         clearInterval(this.draftInterval);
     }
@@ -47,6 +47,10 @@ export class MailCompose extends React.Component {
             MailService.getEmailById(emailId)
                 .then(email => {
                     let { subject, from, cc, body } = email;
+                    if (email.isDraft) {
+                        this.setState(prevState => ({ email: { ...prevState.email, subject: subject, to: from, body, cc } }))
+                        return;
+                    }
                     if (action === 'reply') subject = 'Re : ' + subject;
                     else {
                         subject = 'Forwarded : ' + subject;
@@ -89,7 +93,10 @@ export class MailCompose extends React.Component {
         return (
             <section className="mail-compose">
                 <MailNav />
-                <div className={`compose-screen ${(this.state.isOpen) ? 'open' : ''}`}></div>
+                <div
+                    className={`compose-screen ${(this.state.isOpen) ? 'open' : ''}`}
+                    onClick={this.onBack}>
+                </div>
                 <section className="compose-container">
                     <div className="compose-header">New Email : </div>
                     <form>

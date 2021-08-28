@@ -50,7 +50,7 @@ export class MailNav extends React.Component {
                         Compose</div>
                 </Link>
                 {/* <Link to='/mail/inbox'> */}
-                <div className={`nav-item ${(folder === 'inbox') ? 'chosen' : ''}`}
+                <div className={`nav-item inbox ${(folder === 'inbox') ? 'chosen' : ''}`}
                     onClick={(event) => this.onSetFolder(event, 'inbox')}>
                     <div className="inbox-img"><img src="././img/inbox.png" /></div>
                     Inbox

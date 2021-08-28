@@ -39,3 +39,9 @@
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
 }
+
+@media(max-width: 800px) {
+    .mail-filter {
+        top: 220px;
+    }
+}

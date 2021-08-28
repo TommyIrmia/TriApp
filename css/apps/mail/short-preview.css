@@ -9,14 +9,15 @@
 }
 
 .mail-preview:hover {
+    padding: 5px 20px 5px 10px;
     border: #f28482 1px solid;
     box-shadow: 0px 5px 5px 0px #f6aaa9, 0px -5px 5px 0px #f6aaa9;
     cursor: pointer;
-    z-index:1;
+    z-index: 1;
 }
 
 .mail-preview .from {
-    width: 30%;
+    width: 20%;
 }
 
 .mail-preview h1 {
@@ -32,15 +33,21 @@
 }
 
 .mail-preview .mail-info {
-    width: 60%;
+    width: 70%;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    gap: 20px;
+    gap: 5px;
 }
 
 .mail-preview .mail-info small {
     display: flex;
     align-items: center;
+}
+
+.mail-preview .mail-info p {
+    margin: 0;
+    font-size: 0.8rem;
 }
 
 .mail-preview .date {
@@ -55,11 +62,13 @@
     border: 0;
     background-color: inherit;
 }
+
 .mail-preview button:hover {
     background-color: #fabbba;
     cursor: pointer;
 }
-.mail-preview .read-btn img, .mail-preview .trash-btn img{
+
+.mail-preview .read-btn img, .mail-preview .trash-btn img {
     mix-blend-mode: multiply;
     height: 100%;
     width: 100%;
@@ -74,9 +83,63 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    width: 10%;
+    width: 15%;
+    margin-left: 20px;
 }
 
 .mail-preview .star {
     width: 30px;
+}
+
+@media (max-width: 800px) {
+    .mail-preview {
+        position: relative;
+        flex-direction: column;
+        padding: 0 20px;
+        align-items: flex-start;
+        min-height: 100px;
+        justify-content: space-evenly;
+    }
+    .mail-preview .star {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    .mail-preview .from {
+        width: 100%;
+        margin: 10px 0;
+    }
+    .mail-preview h1 {
+        margin: 0;
+        font-size: 1.2rem;
+    }
+    .mail-preview.read, .mail-preview.read h1 {
+        font-size: 1.2rem;
+    }
+    .mail-preview .mail-info {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+    }
+    .mail-preview .mail-info h1 {
+        font-size: 1rem;
+    }
+    .mail-preview .mail-info p {
+        margin: 0;
+        font-size: 0.8rem;
+    }
+    .mail-preview h1.date {
+        width: 100%;
+        text-align: right;
+        font-weight: 400;
+        color: #f28482;
+    }
+    .mail-preview .btns {
+        justify-self: flex-end;
+        align-self: flex-end;
+        width: 100%;
+    }
+
 }

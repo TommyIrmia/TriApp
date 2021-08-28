@@ -20,7 +20,6 @@ export class MailDetails extends React.Component {
     }
 
     componentWillUnmount() {
-        // this.setState({ chosenEmail: null })
         clearTimeout(this.timeoutId)
     }
 
@@ -49,11 +48,16 @@ export class MailDetails extends React.Component {
     }
 
     render() {
-        const { chosenEmail, folder } = this.state;
+        const { chosenEmail } = this.state;
         if (!chosenEmail) return <div>Loading..</div>
         return (
             <main className="mail-details">
-                <div className={`details-screen ${(this.state.isOpen) ? 'open' : ''}`}></div>
+
+                <div
+                    className={`details-screen ${(this.state.isOpen) ? 'open' : ''}`}
+                    onClick={this.onBack}>
+                </div>
+
                 <section className="mail-info">
                     <div className="top-btns">
                         <button className="back-btn" onClick={() => this.onBack()}>
@@ -80,9 +84,9 @@ export class MailDetails extends React.Component {
                     </div>
 
                     <div className="bottom-btns">
-                        <Link to={`/mail/new-compose/reply/${chosenEmail.id}`}>
+                        {!chosenEmail.isDraft && <Link to={`/mail/new-compose/reply/${chosenEmail.id}`}>
                             <button className="reply-btn" onClick={this.onBack}>
-                                <img src="././img/reply.png" /></button></Link>
+                                <img src="././img/reply.png" /></button></Link>}
                         <Link to={`/mail/new-compose/forward/${chosenEmail.id}`}>
                             <button className="forward-btn" onClick={this.onBack}>
                                 <img src="././img/forward.png" /></button></Link>

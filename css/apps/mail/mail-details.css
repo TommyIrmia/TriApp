@@ -1,22 +1,18 @@
 .mail-details {
-    margin: 20px 0;
     min-height: calc(100vh - 250px);
     display: flex;
     font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
 }
 
 .mail-details .mail-info {
-    /* position: absolute; */
     border-top: 1px solid #e9bebd;
     border-bottom: 1px solid #e9bebd;
-    /* padding: 20px 40px; */
-    /* width: 80%; */
-    /* min-height: calc(100vh - 250px); */
     position: fixed;
     background-color: whitesmoke;
     z-index: 2;
-    top: 80px;
-    left: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 75%;
     width: 80%;
     box-shadow: 0 0 5px 0px #f6aaa9;
@@ -118,6 +114,7 @@
 }
 
 .details-screen {
+    z-index: 2;
     position: fixed;
     inset: 0;
     background-color: rgb(0, 0, 0, 0.5);
@@ -129,4 +126,14 @@
 .details-screen.open {
     pointer-events: all;
     opacity: 1;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .mail-details .mail-info {
+        top: 45%;
+        height: 85%;
+        width: 90%;
+        z-index: 5;
+    }
 }

@@ -8,10 +8,10 @@ export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail, onTogg
             onToggleEmailPreview()
             onToggleRead(event, email, true)
         }}>
+            <button className={`star ${(email.isStar) ? 'fas' : 'far'} fa-star`}
+                onClick={(event) => onStarEmail(event, email)}
+            ></button>
             <div className="btns">
-                <button className={`star ${(email.isStar) ? 'fas' : 'far'} fa-star`}
-                    onClick={(event) => onStarEmail(event, email)}
-                ></button>
                 <Link to={`mail/${email.id}`}>
                     <button>
                         <img src="././img/expand.png" />

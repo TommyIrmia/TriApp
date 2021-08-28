@@ -4,3 +4,11 @@
     width: 80%;
     border-top: 1px #f28482 solid;
 }
+
+@media (max-width: 800px) {
+    .mail-list {
+        margin-top: 60px;
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

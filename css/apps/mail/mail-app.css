@@ -6,3 +6,10 @@
     min-height: calc(100vh - 250px);
     font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
 }
+
+@media (max-width:800px) {
+    .mail-app {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+} 

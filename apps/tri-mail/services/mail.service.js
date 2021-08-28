@@ -104,7 +104,6 @@ function getNumOfUnread() {
     return unReadEmails.length
 }
 
-
 function saveDraft(email) {
     const { subject, to, body } = email
     if (!subject) return
@@ -193,7 +192,7 @@ function _createEmails() {
         _createEmail('Confirm your email address', 'Please confirm your address, it is not active', 'spotify@spot.co.il', gLoggedInUser.email),
         _createEmail('Your invoice waits here', 'Hello, this is your invoice for the prev month', 'Bezeq@bezeq.co.il', gLoggedInUser.email),
         _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com', gLoggedInUser.email),
-        _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedInUser.email),
+        _createEmail('Your order has been accepted (16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedInUser.email),
         _createEmail('Credit Card Invoice', 'Look at your payments here', 'LeumiCard@leumi.co.il', gLoggedInUser.email),
         _createEmail('I LOVE YOU!', 'Please lets get back together', 'Lover@loveme.co.il', gLoggedInUser.email),
         _createEmail('Spam Spam Spam', 'This is a click bite email, I dare you', 'spammer@spam.com', gLoggedInUser.email),
@@ -204,7 +203,7 @@ function _createEmails() {
         _createEmail('Confirm your email address', 'Please confirm your address, it is not active', 'spotify@spot.co.il', gLoggedInUser.email),
         _createEmail('Your invoice waits here', 'Hello, this is your invoice for the prev month', 'Bezeq@bezeq.co.il', gLoggedInUser.email),
         _createEmail('Your account has been hacked', 'WARNING!!! your account has been hacked by a user in Beijin', 'google@google.com', gLoggedInUser.email),
-        _createEmail('Your order has been accepted(16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedInUser.email),
+        _createEmail('Your order has been accepted (16452)', 'The order you made from us has been accepted and is on the way!', 'Amazon@amaz.co.il', gLoggedInUser.email),
     ]
     storageService.saveToStorage('EmailsDB', emails)
     return emails
