@@ -38,5 +38,6 @@
 @media (max-width: 655px) {
     .note-container {
         margin: 0 auto;
+        margin-bottom: 20px;
     }
 }
