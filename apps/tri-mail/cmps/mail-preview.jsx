@@ -8,10 +8,8 @@ export class MailPreview extends React.Component {
         isClicked: false,
     }
 
-    onToggleEmailPreview = (email, isRead) => {
-        MailService.toggleRead(email.id, isRead)
+    onToggleEmailPreview = () => {
         this.setState({ isClicked: !this.state.isClicked })
-        this.props.loadEmails();
     }
 
     render() {

@@ -1,3 +1,7 @@
+import { eventBusService } from "../../../services/event-bus-service.js";
+import { MailService } from "../services/mail.service.js";
+
+
 export class MailFilter extends React.Component {
     state = {
         filterBy: {
@@ -17,19 +21,20 @@ export class MailFilter extends React.Component {
         const field = ev.target.name;
         const value = ev.target.value;
         this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => {
-            this.props.onSetFilter(this.state.filterBy)
+            this.onFilter()
+            eventBusService.emit('set-folder', {})
         });
     };
 
     onFilter = (ev) => {
-        ev.preventDefault();
-        this.props.onSetFilter(this.state.filterBy)
+        if (ev) ev.preventDefault();
+        MailService.setFilter(this.state.filterBy)
     };
 
     render() {
         const { word } = this.state.filterBy;
         return (
-            <form className='mail-filter flex' onSubmit={this.onFilter}>
+            <form className='mail-filter flex' onSubmit={(event) => this.onFilter(event)}>
                 <label htmlFor='by-word' className="flex">
                     <div className="search-img">
                         <img src="././img/search.png" />

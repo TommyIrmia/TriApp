@@ -7,15 +7,14 @@ export class ShortPreview extends React.Component {
         isHover: false,
     }
 
-    componentDidMount() {
-        // this.setState({ isRead: this.props.email.isRead });
-    }
-
     render() {
         const { isHover } = this.state;
         const { email, onToggleEmailPreview, onToggleRead, onDeleteEmail, onStarEmail } = this.props;
         return (
-            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={() => onToggleEmailPreview(email, true)}
+            <section className={`mail-preview ${email.isRead && 'read'}`} onClick={(event) => {
+                onToggleEmailPreview()
+                onToggleRead(event, email, true)
+            }}
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })} >
                 <div className={`star ${(email.isStar) ? 'fas' : 'far'} fa-star`}
@@ -28,7 +27,7 @@ export class ShortPreview extends React.Component {
                 {!isHover && <h1 className="date">{MailService.getDate(email.recievedAt)}</h1>}
                 {isHover &&
                     <div className="btns">
-                        <button className="read-btn" onClick={(event) => onToggleRead(event, email)}>
+                        <button className="read-btn" onClick={(event) => onToggleRead(event, email, !email.isRead)}>
                             <img src={`././img/${(email.isRead) ? 'un' : ''}read.png`} />
                         </button>
                         <button className="trash-btn" onClick={(event) => onDeleteEmail(event, email)}>
