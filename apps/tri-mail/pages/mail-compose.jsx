@@ -23,7 +23,7 @@ export class MailCompose extends React.Component {
     componentDidMount() {
         this.timeoutId = setTimeout(() => this.setState({ isOpen: true }), 0)
         this.setInputs();
-        this.draftInterval = setInterval(this.saveDraft, 1000)
+        this.draftInterval = setInterval(this.saveDraft, 5000)
     }
 
     componentWillUnmount() {

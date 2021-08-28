@@ -1,6 +1,6 @@
 /* Book Details */
 
-.back-btn {
+.book-details .back-btn {
     background-color: #f3b249;
     color: whitesmoke;
     padding: 20px;
@@ -108,6 +108,6 @@
     }
     .book-details .book-img .sale-img {
         left: 50%;
-        transform:translateX(-50%);
+        transform: translateX(-50%);
     }
 }

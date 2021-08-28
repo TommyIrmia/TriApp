@@ -5,7 +5,7 @@ import { LongTxt } from "../../../cmps/long-txt.jsx"
 export class ShortPreview extends React.Component {
     state = {
         isHover: false,
-        txtLength: 20,
+        txtLength: 70,
     }
 
 
@@ -23,13 +23,16 @@ export class ShortPreview extends React.Component {
 
     getWindowSize = () => {
         const windowSize = window.innerWidth
-        if (windowSize > 1600) return 60
+        if (windowSize > 1600) return 70
         if (windowSize > 1400) return 50
         if (windowSize > 1200) return 40
         if (windowSize > 1000) return 30
-        if (windowSize > 800) return 20
-        if (windowSize > 600) return 10
-        return 5
+        if (windowSize > 900) return 20
+        if (windowSize > 800) return 10
+        if (windowSize > 620) return 70
+        if (windowSize > 520) return 50
+        if (windowSize > 420) return 30
+        return 15
     }
 
     render() {
