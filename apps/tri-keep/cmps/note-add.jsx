@@ -24,17 +24,17 @@ export class NoteAdd extends React.Component {
         this.refArea.current.focus()
     }
 
-  componentDidMount() {
-      this.refArea.current.focus()
-  }
- 
-  onSelectInput = (selectedType) => {
-    if (selectedType === 'note-txt') this.onChangeInput( 'Write a note...', selectedType)
-    else if (selectedType === 'note-img') this.onChangeInput( 'Paste Image Link...', selectedType)
-    else if (selectedType === 'note-video') this.onChangeInput( 'Paste video Link...', selectedType)
-    else if (selectedType === 'note-todos') this.onChangeInput( 'Write todos seperated by comma...', selectedType)
-    this.refArea.current.focus()
-}
+    componentDidMount() {
+        this.refArea.current.focus()
+    }
+
+    onSelectInput = (selectedType) => {
+        if (selectedType === 'note-txt') this.onChangeInput('Write a note...', selectedType)
+        else if (selectedType === 'note-img') this.onChangeInput('Paste Image Link...', selectedType)
+        else if (selectedType === 'note-video') this.onChangeInput('Paste video Link...', selectedType)
+        else if (selectedType === 'note-todos') this.onChangeInput('Write todos seperated by comma...', selectedType)
+        this.refArea.current.focus()
+    }
 
 
     onChangeInput = (placeholder, type) => {
@@ -46,7 +46,7 @@ export class NoteAdd extends React.Component {
 
     render() {
         const { inputInfo } = this.state;
-        const { placeholder,txt } = this.state.inputInfo
+        const { placeholder, txt } = this.state.inputInfo
         const { onAddNote } = this.props;
         return (
             <div className="note-add">
@@ -56,7 +56,7 @@ export class NoteAdd extends React.Component {
                         value={txt} placeholder={placeholder} onChange={this.handleChange} />
                     <button onClick={() => {
                         onAddNote(inputInfo)
-                    }} > <img src="../../../img/add.png" /></button>
+                    }} > <img src="./././img/add.png" /></button>
                     <div className="flex fonts-container" >
                         <p onClick={() => {
                             this.onSelectInput('note-txt')
