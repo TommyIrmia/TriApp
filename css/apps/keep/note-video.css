@@ -5,6 +5,7 @@
     border: 1px solid #bfbcbcb8;
     border-radius: 0.8rem;
     display: inline-block;
+    margin: 0;
     break-inside: avoid-column;
 }
 

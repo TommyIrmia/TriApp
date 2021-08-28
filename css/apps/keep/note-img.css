@@ -6,6 +6,7 @@
     border-radius: 0.8rem;
     display: inline-block;
     break-inside: avoid-column;
+    margin: 0;
 }
 
 .note-img img {

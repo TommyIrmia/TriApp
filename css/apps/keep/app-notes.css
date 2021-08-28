@@ -31,6 +31,8 @@
 
 .note-container {
     width: fit-content;
+    /* margin:0; */
+    margin-bottom: 20px;
 }
 
 @media (max-width: 655px) {
