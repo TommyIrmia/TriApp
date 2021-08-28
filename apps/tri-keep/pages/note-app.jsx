@@ -56,6 +56,7 @@ export class NoteApp extends React.Component {
         if (!inputInfo.txt) return;
         NoteService.addNote(inputInfo)
             .then((notes) => { this.setState({ notes }) })
+        inputInfo.txt = '';
     }
 
     onSetFilter = (filterBy) => {
