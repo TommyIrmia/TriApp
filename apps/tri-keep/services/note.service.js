@@ -12,7 +12,7 @@ export const NoteService = {
     allTodosDone,
     _createNote: _createNoteTxt,
     addNote,
-
+    duplicateNote,
 }
 
 const KEY = 'notesDB';
@@ -41,14 +41,18 @@ function saveTxt(noteId, val) {
     getNoteById(noteId)
         .then(note => {
             if (note.type === 'note-txt') note.info.txt = val;
-            else if (note.type === 'note-img') note.info.title = val;
+            else if (note.type === 'note-img' || note.type === 'note-video') note.info.title = val;
 
             _saveNotesToStorage()
         })
 }
 
-function _getNoteIdxById(noteId) {
-    return gNotes.findIndex(note => note.id === noteId)
+function duplicateNote(note) {
+    const newNote = JSON.parse(JSON.stringify(note));
+    newNote.id = utilService.makeId()
+    gNotes.push(newNote)
+    _saveNotesToStorage()
+    return Promise.resolve(gNotes)
 }
 
 
@@ -95,30 +99,19 @@ function todoDone(noteId, todos, todoIdx) {
 }
 
 
-// function todoDone(noteId,todos) {
-//     const noteIdx = _getNoteIdxById(noteId)
-//     const notes = [...gNotes]
-//     notes[noteIdx].info.todos = todos
-//     let todosToTxt = '';
-//     todos.forEach(todo => {
-//         todosToTxt += todo.txt + ', '
-//     })
-//     notes[noteIdx].info.txt = todosToTxt
-//     gNotes = notes
-//     _saveNotesToStorage()
-//     return Promise.resolve()
-// }
-// function getNoteById(noteId) {
-//     const note = gNotes.find(note => note.id === noteId)
-//     return Promise.resolve(note)
-// }
 
+
+function getNoteById(noteId) {
+    const note = gNotes.find(note => note.id === noteId)
+    return Promise.resolve(note)
+}
 
 function addNote(inputInfo) {
     const { txt } = inputInfo;
     let note;
     if (inputInfo.type === 'note-txt') note = _createNoteTxt(txt)
-    else if (inputInfo.type === 'note-img') note = _createNoteImg(txt)
+    else if (inputInfo.type === 'note-img') note = _createNoteImg('note-img', txt)
+    else if (inputInfo.type === 'note-video') note = _createNoteImg('note-video', txt)
     else note = _createNoteTodos(txt)
     gNotes.unshift(note);
     _saveNotesToStorage();
@@ -139,11 +132,11 @@ function _createNoteTxt(txt) {
     }
 }
 
-function _createNoteImg(url) {
+function _createNoteImg(type, url) {
     return {
         id: utilService.makeId(),
         isPinned: false,
-        type: "note-img",
+        type,
         info: {
             url,
             title: "",
@@ -154,28 +147,10 @@ function _createNoteImg(url) {
     }
 }
 
-// function _createNoteTodos(txt) {
-//     const noteToUpdateIdx = getNoteIdxById(noteId)
-//     const notes = [...gNotes]
-//     notes[noteToUpdateIdx].info.todos = todos
-//     let todosToTxt = '';
-//     todos.forEach(todo => {
-//         todosToTxt += todo.txt + ', '
-//     })
-//     notes[noteToUpdateIdx].info.txt = todosToTxt
-//     gNotes = notes
-//     _saveNotesToStorage()
-//     return Promise.resolve()
-// }
 
-function getNoteById(noteId) {
-    const note = gNotes.find(note => note.id === noteId)
-    return Promise.resolve(note)
-}
 
-function getNoteIdxById(noteId) {
-    return gNotes.findIndex(note => note.id === noteId)
-}
+
+
 
 
 function _createNoteTodos(txt) {
@@ -195,9 +170,9 @@ function _createNoteTodos(txt) {
 
 
     const todos = []
-    console.log(txt);
-    notesTodos.info.txt = txt
-    const userTodos = txt.split(',')
+    notesTodos.info.label = txt.split(',')[0]
+    const newTtx = txt.split(',').slice(1).join(',')
+    const userTodos = newTtx.split(',')
     userTodos.forEach(todo => {
         todos.push({
             txt: todo,
@@ -246,7 +221,7 @@ function _createNotes() {
                 type: "note-todos",
                 isDone: 'false',
                 info: {
-                    txt: "Get my shit together",
+                    label: "Get my shit together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
                         { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
@@ -270,13 +245,13 @@ function _createNotes() {
             {
                 id: "n105",
                 isPinned: false,
-                type: "note-img",
+                type: "note-video",
                 info: {
-                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                    title: "smoke on ground",
+                    url: "https://www.youtube.com/embed/H1HdZFgR-aA",
+                    title: ''
                 },
                 style: {
-                    backgroundColor: "rgb(98 98 192)"
+                    backgroundColor: "#f44336"
                 }
             },
             {
@@ -302,6 +277,30 @@ function _createNotes() {
                     backgroundColor: "#00d"
                 }
             },
+            {
+                id: "n108",
+                isPinned: true,
+                type: "note-video",
+                info: {
+                    url: "https://giphy.com/embed/hjUYcGyhsGvI7not7w/video",
+                    title: ''
+                },
+                style: {
+                    backgroundColor: "rgb(180, 248, 200)"
+                }
+            },
+            {
+                id: "n109",
+                isPinned: false,
+                type: "note-img",
+                info: {
+                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
+                    title: "smoke on ground",
+                },
+                style: {
+                    backgroundColor: "rgb(98 98 192)"
+                }
+            },
         ]
     }
     gNotes = [...notes];
@@ -323,3 +322,46 @@ function query(filterBy) {
         return Promise.resolve(pinnedNotes)
     }
 }
+
+
+// function query(pinnedNotes, filterBy, notes) {
+//     if (!pinnedNotes) {
+//         if (filterBy) {
+//             const { word, type } = filterBy;
+//             const filteredNotes = notes.filter(note => {
+//                 const subject = note.subject.toLowerCase();
+//                 return (subject.includes(word))
+//             })
+
+
+
+
+
+
+//             const unPinnedNotes = gNotes.filter(note => !note.isPinned)
+//             return Promise.resolve(unPinnedNotes)
+//         } else {
+//             const pinnedNotes = gNotes.filter(note => note.isPinned);
+//             return Promise.resolve(pinnedNotes)
+//         }
+//     }
+
+// function query(filterBy, notes) {
+//     if (filterBy) {
+//         const { word, type } = filterBy;
+//         const filteredNotes = notes.filter(note => {
+//             const subject = note.subject.toLowerCase();
+//             return (subject.includes(word))
+//         })
+//         if (type === 'all') return Promise.resolve(filteredNotes)
+
+
+//         const notesToShow = filteredNotes.filter(note => {
+//             if (type === 'read') return note.isRead;
+//             if (type === 'unread') return !note.isRead;
+//         })
+//         return Promise.resolve(notesToShow)
+//     }
+//     console.log('from service', notes);
+//     return Promise.resolve(notes);
+// }

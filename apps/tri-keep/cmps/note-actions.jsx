@@ -11,7 +11,7 @@ export class NoteActions extends React.Component {
     }
 
     render() {
-        const { note, onRemoveNote, onChangeColor, onSetNotePin } = this.props;
+        const { note, onRemoveNote, onChangeColor, onSetNotePin,onDuplicateNote } = this.props;
         const { isPaletteOn } = this.state
         return (
             <section>
@@ -23,6 +23,9 @@ export class NoteActions extends React.Component {
 
                 <button onClick={this.onOpenPalette} className="btn-action fas fa-palette"></button>
 
+                <button onClick={(ev)=>{
+                    onDuplicateNote(ev,note)
+                }} className="btn-action far fa-copy" ></button>
 
                 {isPaletteOn && <ColorInput onChangeColor={onChangeColor} />}
             </section>

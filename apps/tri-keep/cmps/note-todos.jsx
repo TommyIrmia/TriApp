@@ -64,11 +64,11 @@ export class NoteTodos extends React.Component {
    
 
 render() {
-    const { note, onRemoveNote, onSetNotePin } = this.props;
+    const { note, onRemoveNote, onSetNotePin,onDuplicateNote } = this.props;
     const { isContentEditable, isHover, color,isDone } = this.state;
     const {info} = this.props.note;
     return (
-        <section className='note-txt-container' 
+        <section className="note-container"
             onMouseEnter={() => this.setState({ isHover: true })}
             onMouseLeave={() => this.setState({ isHover: false })}>
             <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>
@@ -78,7 +78,7 @@ render() {
                 suppressContentEditableWarning={true}>
 
 
-                <h3 className={(isDone)? 'line-through' : ''} >{info.txt}
+                <h3 className={(isDone)? 'line-through' : ''} >{info.label}
                  <button onClick={this.onAllTodosDone} className={(isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </h3>
                 {info.todos.map((todo)  =>{
                     return <React.Fragment key={todo.id} >
@@ -89,7 +89,7 @@ render() {
                     </React.Fragment>
                 })}
                 
-                {isHover && <NoteActions onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
+                {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
             </blockquote>
         </section>
 

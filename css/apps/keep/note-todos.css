@@ -7,6 +7,9 @@
     padding: 0 0.5rem;
     line-height: 1px;
     display: grid;
+    display: inline-block;
+    margin-inline-end: 0;
+    margin-inline-start: 0;
 }
 
 .note-todos:hover {

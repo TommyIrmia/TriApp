@@ -27,6 +27,7 @@ state={
   onSelectInput = (selectedType) => {
     if (selectedType === 'note-txt') this.onChangeInput( 'Write a note...', selectedType)
     else if (selectedType === 'note-img') this.onChangeInput( 'Paste Image Link...', selectedType)
+    else if (selectedType === 'note-video') this.onChangeInput( 'Paste video Link...', selectedType)
     else if (selectedType === 'note-todos') this.onChangeInput( 'Write todos seperated by comma...', selectedType)
     this.refArea.current.focus()
 }
@@ -59,6 +60,9 @@ state={
                 <p onClick={()=>{
                     this.onSelectInput('note-img')
                 }} title="imag" className="fas fa-imag"></p>
+                <p onClick={()=>{
+                    this.onSelectInput('note-video')
+                }} title="video" className="far fa-file-video"></p>
                 <p onClick={()=>{
                     this.onSelectInput('note-todos')
                     }} title="List" className="fas fa-list"></p>

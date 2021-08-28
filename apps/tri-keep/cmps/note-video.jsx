@@ -1,8 +1,7 @@
 import { NoteService } from '../services/note.service.js'
 import { NoteActions } from './note-actions.jsx'
 
-export class NoteImg extends React.Component {
-
+export class NoteVideo extends React.Component {
 
     state = {
         isContentEditable: false,
@@ -49,7 +48,9 @@ export class NoteImg extends React.Component {
                     className={`${note.type}  ${(isContentEditable) ? 'editable' : '' } `}
                     onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
                     suppressContentEditableWarning={true} >
-                     <img src={note.info.url} />
+                      <iframe width="400" height="250"
+                            src={note.info.url}>
+                        </iframe>
                      <h1> {note.info.title}</h1>
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
                      onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
@@ -58,6 +59,4 @@ export class NoteImg extends React.Component {
 
         )
     }
-
-
 }

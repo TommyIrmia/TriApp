@@ -39,10 +39,10 @@ export class NoteTxt extends React.Component {
 
 
     render() {
-        const { note, onRemoveNote, onSetNotePin } = this.props;
+        const { note, onRemoveNote, onSetNotePin,onDuplicateNote } = this.props;
         const { isContentEditable, isHover, color } = this.state;
         return (
-            <section className='note-txt-container' 
+            <section className="note-container"
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })}>
                 <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>
@@ -51,7 +51,7 @@ export class NoteTxt extends React.Component {
                     onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
                     suppressContentEditableWarning={true}>
                     <h1>{note.info.txt}</h1>
-                    {isHover && <NoteActions onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
+                    {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </blockquote>
             </section>
 
