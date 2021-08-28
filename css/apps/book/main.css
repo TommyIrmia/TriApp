@@ -1,7 +1,6 @@
 @import 'setup.css';
 @import 'pages/BookApp.css';
 @import 'pages/BookDetails.css';
-@import 'cmps/AppHeader.css';
 @import 'cmps/BookFilter.css';
 @import 'cmps/BookList.css';
 @import 'cmps/BookPreview.css';

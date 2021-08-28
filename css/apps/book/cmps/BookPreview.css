@@ -3,7 +3,7 @@
     height: 440px;
     border: 2px solid #2e2e2e;
     padding: 0 20px 10px;
-    background-color: #f5cac3;
+    background-color: #ffe3b6;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,8 +14,8 @@
 .book-preview:hover {
     cursor: pointer;
     transform: translateY(-15px);
-    background-color: #fa9586;
-    box-shadow: 0 0 20px #fa9586;
+    background-color: #f8c573;
+    box-shadow: 0 0 20px #f3b249;
 }
 
 .book-preview h2 {
