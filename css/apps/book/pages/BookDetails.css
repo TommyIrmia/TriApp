@@ -51,8 +51,6 @@
 }
 
 .book-details .book-img {
-    /* background-color: #f5cac3; */
-    /* min-height: 500px; */
     padding: 20px;
     width: 40%;
     color: black;
@@ -60,8 +58,6 @@
 }
 
 .book-details .book-img .book-image {
-    /* width: 80%; */
-    /* height: 100%; */
     height: 500px;
     width: 375px;
     border-radius: 1rem;
@@ -73,9 +69,6 @@
     position: absolute;
     top: 4%;
     left: 100px;
-    /* transform: translateX(-50%); */
-    /* width: 80%; */
-    /* animation: blink-2 1.5s infinite both; */
 }
 
 .book-details .book-img .sale-img img {

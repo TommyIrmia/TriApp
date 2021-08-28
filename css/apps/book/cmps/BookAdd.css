@@ -24,7 +24,7 @@
     padding: 0;
     list-style-type: none;
     margin-block-start: 0;
-    background-color: lightcyan;
+    background-color: #f5cac3;
 }
 
 .option {
@@ -35,12 +35,12 @@
 }
 
 .options-list > .option:not(:last-child) {
-    border-bottom: 3px rgb(48, 59, 122) solid;
+    border-bottom: 3px #f5aca1 solid;
 }
 
 .option button {
     border: 0;
-    background-color: lightgreen;
+    background-color: #fa907f;
     color: whitesmoke;
     font-size: 1.2rem;
     font-weight: 700;

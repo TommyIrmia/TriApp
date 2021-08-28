@@ -21,7 +21,7 @@ export function Home() {
                 </div>
             </Link>
 
-            <Link to={'/'} className="app-preview app3 clean">
+            <Link to={'/book'} className="app-preview app3 clean">
                 <div className="app-img"> here will be an img of the site</div>
                 <div className="app-info">
                     <h1>TriBook</h1>
