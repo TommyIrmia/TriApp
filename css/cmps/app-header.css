@@ -68,6 +68,16 @@
     box-shadow: 0px 5px 5px -5px rgb(85, 85, 85);
 }
 
+.btn-toggle-nav {
+    border: none;
+    background: inherit;
+    display: none;
+}
+
+.btn-toggle-nav:hover {
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     .app-header .logos {
         position: fixed;
@@ -81,10 +91,16 @@
         justify-content: space-around;
         border-bottom: unset;
         box-shadow: unset;
+        transform: translateY(-102%);
+        transition: transform .6s;
+    }
+    .app-header .nav-down {
+        transform: translateY(0);
     }
     .active {
         border-bottom: unset;
         box-shadow: unset;
+        transform: scale(1);
     }
     .app-header .book-logo,
     .app-header .keep-logo {
@@ -92,5 +108,8 @@
     }
     .app-header .mail-logo {
         height: 45%;
+    }
+    .btn-toggle-nav {
+        display: block;
     }
 }

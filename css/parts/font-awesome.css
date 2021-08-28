@@ -70,6 +70,11 @@
         color: gray;
         content: "\f005";
     }
+    
+    .fas.fa-caret-square-down::before {
+        content: "\f150";
+        font-size: 40px;
+    }
     /* HOVER */
     
     .fa-pencil-alt:hover {
