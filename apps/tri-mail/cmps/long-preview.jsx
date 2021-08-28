@@ -4,7 +4,10 @@ import { MailService } from "../services/mail.service.js";
 
 export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail, onToggleRead, onStarEmail }) {
     return (
-        <section className="long-preview" onClick={() => onToggleEmailPreview(email, email.isRead)}>
+        <section className="long-preview" onClick={(event) => {
+            onToggleEmailPreview()
+            onToggleRead(event, email, true)
+        }}>
             <div className="btns">
                 <button className={`star ${(email.isStar) ? 'fas' : 'far'} fa-star`}
                     onClick={(event) => onStarEmail(event, email)}
@@ -15,8 +18,8 @@ export function LongPreview({ email, onToggleEmailPreview, onDeleteEmail, onTogg
                     </button>
                 </Link>
                 <button className="read-btn" onClick={(event) => {
-                    onToggleEmailPreview(email, email.isRead)
-                    onToggleRead(event, email)
+                    onToggleEmailPreview()
+                    onToggleRead(event, email, !email.isRead)
                 }}>
                     <img src={`././img/${(email.isRead) ? 'un' : ''}read.png`} />
                 </button>

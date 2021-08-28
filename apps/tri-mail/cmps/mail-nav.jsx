@@ -1,4 +1,5 @@
 import { MailService } from "../services/mail.service.js";
+import { eventBusService } from "../../../services/event-bus-service.js";
 
 const { Link } = ReactRouterDOM
 
@@ -7,52 +8,86 @@ export class MailNav extends React.Component {
 
     state = {
         emails: [],
+        folder: 'inbox'
     }
+
+    removeEventBus;
 
     componentDidMount() {
-        MailService.getEmailsByFolder('inbox')
-            .then(emails => this.setState({ emails }))
+        this.loadEmails();
+        this.removeEventBus = eventBusService.on('set-read-num', () => {
+            this.loadEmails()
+        })
     }
 
+    loadEmails = () => {
+        const currFolder = MailService.getFolder()
+        MailService.query()
+            .then(emails => {
+                this.setState({ emails, folder: currFolder })
+            })
+    }
+
+    componentWillUnmount() {
+        this.removeEventBus();
+    }
+
+    onSetFolder = (ev, folder) => {
+        ev.preventDefault();
+        MailService.setFolder(folder);
+        this.setState({ folder });
+        eventBusService.emit('set-folder', {})
+    }
+
+
     render() {
-        const { emails } = this.state
-        const { onSetFolder, folder } = this.props
+        const { emails, folder } = this.state
+        console.log('isrender?');
         return (
             <section className="mail-nav">
-                <Link to='/mail/new-compose' className="clean">
+                <Link to="/mail/new-compose" className="clean">
                     <div className='compose'>
                         <div className="add-img"><img src="././img/add.jpg" /></div>
                         Compose</div>
                 </Link>
+                {/* <Link to='/mail/inbox'> */}
                 <div className={`nav-item ${(folder === 'inbox') ? 'chosen' : ''}`}
-                    onClick={() => onSetFolder('inbox')}>
+                    onClick={(event) => this.onSetFolder(event, 'inbox')}>
                     <div className="inbox-img"><img src="././img/inbox.png" /></div>
                     Inbox
                     <h4>
                         {(MailService.getNumOfUnread(emails)) ? MailService.getNumOfUnread(emails) : ''}
                     </h4>
                 </div>
+                {/* </Link> */}
 
+                {/* <Link to='/mail/starred'> */}
                 <div className={`nav-item ${(folder === 'starred') ? 'chosen' : ''}`}
-                    onClick={() => onSetFolder('starred')}>
+                    onClick={(event) => this.onSetFolder(event, 'starred')}>
                     <div className="star-img inbox-img"><img src="././img/star.jpg" /></div>
                     Starred</div>
+                {/* </Link> */}
 
+                {/* <Link to='/mail/sent'> */}
                 <div className={`nav-item sent ${(folder === 'sent') ? 'chosen' : ''}`}
-                    onClick={() => onSetFolder('sent')}>
+                    onClick={(event) => this.onSetFolder(event, 'sent')}>
                     <div className="seng-img inbox-img"><img src="././img/sent.jpg" /></div>
                     Sent</div>
+                {/* </Link> */}
 
+                {/* <Link to='/mail/draft'> */}
                 <div className={`nav-item draft ${(folder === 'draft') ? 'chosen' : ''}`}
-                    onClick={() => onSetFolder('draft')}>
+                    onClick={(event) => this.onSetFolder(event, 'draft')}>
                     <div className="draft-img inbox-img"><img src="././img/draft.png" /></div>
                     Drafts</div>
+                {/* </Link> */}
 
+                {/* <Link to='/mail/trash'> */}
                 <div className={`nav-item trash ${(folder === 'trash') ? 'chosen' : ''}`}
-                    onClick={() => onSetFolder('trash')}>
+                    onClick={(event) => this.onSetFolder(event, 'trash')}>
                     <div className="trash-img inbox-img"><img src="././img/trash.png" /></div>
                     Trash</div>
-
+                {/* </Link> */}
             </section>
         )
     }

@@ -6,12 +6,20 @@
 }
 
 .mail-details .mail-info {
-    margin-top: 20px;
+    /* position: absolute; */
     border-top: 1px solid #e9bebd;
     border-bottom: 1px solid #e9bebd;
     /* padding: 20px 40px; */
+    /* width: 80%; */
+    /* min-height: calc(100vh - 250px); */
+    position: fixed;
+    background-color: whitesmoke;
+    z-index: 2;
+    top: 80px;
+    left: 150px;
+    height: 75%;
     width: 80%;
-    height: inherit;
+    box-shadow: 0 0 5px 0px #f6aaa9;
     display: flex;
     flex-direction: column;
 }
@@ -107,4 +115,18 @@
 .mail-details button:hover {
     background-color: #fabbba;
     cursor: pointer;
+}
+
+.details-screen {
+    position: fixed;
+    inset: 0;
+    background-color: rgb(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+}
+
+.details-screen.open {
+    pointer-events: all;
+    opacity: 1;
 }

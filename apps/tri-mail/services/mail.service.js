@@ -13,6 +13,9 @@ export const MailService = {
     getEmailById,
     sendEmail,
     toggleStar,
+    getFolder,
+    setFolder,
+    setFilter,
 }
 
 const gLoggedInUser = {
@@ -21,51 +24,68 @@ const gLoggedInUser = {
 }
 
 const gEmails = storageService.loadFromStorage('EmailsDB') || _createEmails();
+let gFilter = {
+    folder: 'inbox',
+    filterBy: {
+        word: '',
+        type: 'all'
+    },
+};
 
-function query(filterBy, emails) {
-    // if (!filterBy) {
-    //     return Promise.resolve(emails);
-    // }
-    if (filterBy) {
-        const { word, type } = filterBy;
-        const filteredEmails = emails.filter(email => {
+function query() {
+    let emailsToShow = getEmailsByFolder()
+
+    if (gFilter.filterBy) {
+        const { word, type } = gFilter.filterBy;
+        const filteredEmails = emailsToShow.filter(email => {
             const subject = email.subject.toLowerCase();
             return (subject.includes(word))
         })
+
         if (type === 'all') return Promise.resolve(filteredEmails)
 
-
-        const emailsToShow = filteredEmails.filter(email => {
+        const emailsByType = filteredEmails.filter(email => {
             if (type === 'read') return email.isRead;
             if (type === 'unread') return !email.isRead;
         })
-        return Promise.resolve(emailsToShow)
+        return Promise.resolve(emailsByType)
     }
-    console.log('from service', emails);
-    return Promise.resolve(emails);
+    return Promise.resolve(emailsToShow);
 }
 
-function getEmailsByFolder(folder) {
-
-    switch (folder) {
+function getEmailsByFolder() {
+    switch (gFilter.folder) {
         case 'inbox':
-            return Promise.resolve(gEmails.filter(email => (!email.isSent && !email.isTrash)));
+            return gEmails.filter(email => !email.isSent && !email.isTrash);
         case 'sent':
-            return Promise.resolve(gEmails.filter(email => (email.isSent && !email.isTrash)));
+            return gEmails.filter(email => email.isSent && !email.isTrash);
         case 'starred':
-            return Promise.resolve(gEmails.filter((email => email.isStar && !email.isTrash)));
+            return gEmails.filter(email => email.isStar && !email.isTrash);
         case 'trash':
-            return Promise.resolve(gEmails.filter(email => email.isTrash));
+            return gEmails.filter(email => email.isTrash);
         case 'draft':
-            return Promise.resolve(gEmails.filter(email => (email.isDraft && !email.isTrash)))
+            return gEmails.filter(email => email.isDraft && !email.isTrash)
+
     }
+}
+
+function setFilter(filterBy) {
+    gFilter.filterBy = filterBy;
+    console.log(gFilter);
+}
+
+function setFolder(folder) {
+    gFilter.folder = folder;
+}
+
+function getFolder() {
+    return gFilter.folder
 }
 
 function sendEmail(email) {
     const { subject, to, cc, body } = email;
-    console.log(email);
     const from = gLoggedInUser.email;
-    const newEmail = _createEmail(subject, body, to, from, true, true);
+    const newEmail = _createEmail(subject, body, to, from, true, true, false);
     gEmails.unshift(newEmail);
     storageService.saveToStorage('EmailsDB', gEmails);
     return Promise.resolve();
@@ -126,13 +146,14 @@ function getBody(txt) {
     return newTxts
 }
 
-function _createEmail(subject, body, from, to, isRead, isSent) {
+function _createEmail(subject, body, from, to, isRead, isSent, isStar) {
+    isStar = (!isStar) ? false : (Math.random() > 0.5) ? true : false;
     return {
         id: utilService.makeId(),
         subject,
         body,
         isRead: isRead || ((Math.random() > 0.5) ? true : false),
-        isStar: ((Math.random() > 0.5) ? true : false),
+        isStar: isStar,
         isSent: isSent || false,
         isDraft: false,
         isTrash: false,

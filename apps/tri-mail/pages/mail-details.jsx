@@ -7,14 +7,21 @@ export class MailDetails extends React.Component {
 
     state = {
         chosenEmail: null,
+        emails: [],
+        folder: MailService.getFolder(),
+        isOpen: false,
     }
+
+    timeoutId;
 
     componentDidMount() {
         this.loadEmail();
+        this.timeoutId = setTimeout(() => this.setState({ isOpen: true }), 0)
     }
 
     componentWillUnmount() {
-        this.setState({chosenEmail: null})
+        // this.setState({ chosenEmail: null })
+        clearTimeout(this.timeoutId)
     }
 
     loadEmail = () => {
@@ -42,11 +49,11 @@ export class MailDetails extends React.Component {
     }
 
     render() {
-        const { chosenEmail } = this.state;
+        const { chosenEmail, folder } = this.state;
         if (!chosenEmail) return <div>Loading..</div>
         return (
             <main className="mail-details">
-                <MailNav />
+                <div className={`details-screen ${(this.state.isOpen) ? 'open' : ''}`}></div>
                 <section className="mail-info">
                     <div className="top-btns">
                         <button className="back-btn" onClick={() => this.onBack()}>
@@ -73,8 +80,12 @@ export class MailDetails extends React.Component {
                     </div>
 
                     <div className="bottom-btns">
-                        <Link to={`/mail/new-compose/reply/${chosenEmail.id}`}><button className="reply-btn"><img src="././img/reply.png" /></button></Link>
-                        <Link to={`/mail/new-compose/forward/${chosenEmail.id}`}><button className="forward-btn"><img src="././img/forward.png" /></button></Link>
+                        <Link to={`/mail/new-compose/reply/${chosenEmail.id}`}>
+                            <button className="reply-btn" onClick={this.onBack}>
+                                <img src="././img/reply.png" /></button></Link>
+                        <Link to={`/mail/new-compose/forward/${chosenEmail.id}`}>
+                            <button className="forward-btn" onClick={this.onBack}>
+                                <img src="././img/forward.png" /></button></Link>
                     </div>
 
                 </section>
