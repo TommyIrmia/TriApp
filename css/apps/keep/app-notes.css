@@ -32,4 +32,11 @@
 
 .note-container {
     width: fit-content;
+    position: relative;
+}
+
+.pinned-note {
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
