@@ -7,6 +7,7 @@ export function NoteList({ notes, pinnedNotes, onRemoveNote, onSetNotePin, onDup
             <section className="pinned-note-list">
                 {pinnedNotes.map(note => <NotePreview onDuplicateNote={onDuplicateNote} onRemoveNote={onRemoveNote} key={note.id}
                     note={note} onSetNotePin={onSetNotePin} />)}
+                    {/* {pinnedNotes.length && <img src="../../../img/pinned.png"/>} */}
             </section>
             <section className="unpinned-note-list ">
                 {notes.map(note => <NotePreview onDuplicateNote={onDuplicateNote} onRemoveNote={onRemoveNote} key={note.id}

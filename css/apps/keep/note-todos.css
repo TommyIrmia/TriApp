@@ -39,3 +39,9 @@
 .line-through {
     text-decoration: line-through;
 }
+
+@media (max-width: 655px) {
+    .note-todos {
+        width: 350px;
+    }
+}

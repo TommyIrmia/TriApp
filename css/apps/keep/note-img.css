@@ -24,3 +24,9 @@
     font-family: Roboto, Arial, sans-serif;
     text-align: center
 }
+
+@media (max-width: 655px) {
+    .note-img {
+        width: 350px;
+    }
+}

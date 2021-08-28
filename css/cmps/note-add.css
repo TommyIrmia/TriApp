@@ -1,5 +1,4 @@
 .note-add {
-    /* text-align: center; */
     margin: 3.125rem;
 }
 
@@ -15,6 +14,7 @@
 
 .fonts-container {
     gap: 10px;
+    margin-inline-end: 5px;
 }
 
 .note-add button:hover {
@@ -33,14 +33,14 @@
     line-height: 1.25rem;
     background-color: inherit;
     height: inherit;
-    width: 70%;
+    width: 65%;
     padding: .5rem;
     resize: none;
 }
 
 .txt-container {
     margin: 0 auto;
-    width: 500px;
+    max-width: 500px;
     height: 50px;
     box-shadow: 0px 0px 9px 0px #686865ab;
     border-radius: 0.8rem;
@@ -52,5 +52,42 @@
 }
 
 .btn-chosen {
-    color: rgb(145, 253, 145);
+    color: rgb(132 165 157);
+}
+
+@media (max-width: 550px) {
+    /* .fas.fa-pencil-alt::before {
+        font-size: 15px;
+    }
+    .fas.fa-imag::before {
+        font-size: 15px;
+    }
+    .far.fa-file-video::before {
+        font-size: 15px;
+    }
+    .fas.fa-list::before {
+        font-size: 15px;
+    }
+    .note-add button img {
+        width: 30px;
+    } */
+    .fonts-container {
+        gap: 21px;
+        margin-inline-end: 5px;
+        position: relative;
+        top: -55px;
+        left: -20%;
+        z-index: 1;
+    }
+    .note-add textarea {
+        width: 100%;
+    }
+    .note-add button img {
+        gap: 21px;
+        margin-inline-end: 5px;
+        position: relative;
+        top: -55px;
+        left: -20%;
+        z-index: 1;
+    }
 }

@@ -54,6 +54,7 @@ export class NoteImg extends React.Component {
                         <img src={note.info.url} />
                         <h1> {note.info.txt}</h1>
                     </section>
+                        {/* {note.isPinned && <p className="btn-action fas fa-thumbtack pinned-note"></p>} */}
                     
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
                         onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}

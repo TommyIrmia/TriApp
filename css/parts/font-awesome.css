@@ -42,18 +42,22 @@
     
     .fas.fa-pencil-alt::before {
         content: "\f303";
+        font-size: 20px;
     }
     
     .fas.fa-imag::before {
         content: "\f03e";
+        font-size: 20px;
     }
     
     .far.fa-file-video::before {
         content: "\f1c8";
+        font-size: 20px;
     }
     
     .fas.fa-list::before {
         content: "\f03a";
+        font-size: 20px;
     }
     
     .fas.fa-star::before {

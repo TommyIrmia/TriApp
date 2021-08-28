@@ -63,13 +63,13 @@ export class NoteAdd extends React.Component {
                         }} title="Text" className={`fas fa-pencil-alt ${inputInfo.type === 'note-txt' ? 'btn-chosen' : ''} `}></p>
                         <p onClick={() => {
                             this.onSelectInput('note-img')
-                        }} title="Imag" className="fas fa-imag"></p>
+                        }} title="Imag" className={`fas fa-imag ${inputInfo.type === 'note-img' ? 'btn-chosen' : ''} `}></p>
                         <p onClick={() => {
                             this.onSelectInput('note-video')
-                        }} title="Video" className="far fa-file-video"></p>
+                        }} title="Video" className={`far fa-file-video ${inputInfo.type === 'note-video' ? 'btn-chosen' : ''} `}></p>
                         <p onClick={() => {
                             this.onSelectInput('note-todos')
-                        }} title="List" className="fas fa-list"></p>
+                        }} title="List" className={`fas fa-list ${inputInfo.type === 'note-todos' ? 'btn-chosen' : ''} `}></p>
                     </div>
 
                 </div>

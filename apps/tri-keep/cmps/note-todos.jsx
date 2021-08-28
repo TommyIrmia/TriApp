@@ -88,7 +88,7 @@ render() {
                         }} className={(todo.doneAt || isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </p>
                     </div>
                 })}
-                
+                 {/* {note.isPinned && <p className="btn-action fas fa-thumbtack pinned-note"></p>} */}
                 {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
             </blockquote>
         </section>

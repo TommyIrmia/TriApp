@@ -51,7 +51,7 @@ export class NoteTxt extends React.Component {
                     onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
                     suppressContentEditableWarning={true}>
                     <h1>{note.info.txt}</h1>
-                    {note.isPinned && <p className="btn-action fas fa-thumbtack pinned-note"></p>}
+                    {/* {note.isPinned && <p className="btn-action fas fa-thumbtack pinned-note"></p>} */}
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </blockquote>
             </section>

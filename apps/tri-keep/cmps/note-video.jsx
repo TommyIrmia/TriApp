@@ -52,6 +52,7 @@ export class NoteVideo extends React.Component {
                             src={note.info.url}>
                         </iframe>
                      <h1> {note.info.txt}</h1>
+                                {/* {note.isPinned && <p className="btn-action fas fa-thumbtack pinned-note"></p>} */}
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
                      onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </section>
