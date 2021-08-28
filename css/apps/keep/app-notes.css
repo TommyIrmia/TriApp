@@ -31,13 +31,6 @@
 
 .note-container {
     width: fit-content;
-    position: relative;
-}
-
-.pinned-note {
-    position: fixed;
-    top: 30%;
-    left: 10px;
 }
 
 @media (max-width: 655px) {
