@@ -16,6 +16,8 @@ export const MailService = {
     getFolder,
     setFolder,
     setFilter,
+    setDraft,
+    saveDraft,
 }
 
 const gLoggedInUser = {
@@ -31,6 +33,8 @@ let gFilter = {
         type: 'all'
     },
 };
+let gDraft = null;
+
 
 function query() {
     let emailsToShow = getEmailsByFolder()
@@ -56,7 +60,7 @@ function query() {
 function getEmailsByFolder() {
     switch (gFilter.folder) {
         case 'inbox':
-            return gEmails.filter(email => !email.isSent && !email.isTrash);
+            return gEmails.filter(email => !email.isSent && !email.isTrash && !email.isDraft);
         case 'sent':
             return gEmails.filter(email => email.isSent && !email.isTrash);
         case 'starred':
@@ -69,63 +73,8 @@ function getEmailsByFolder() {
     }
 }
 
-function setFilter(filterBy) {
-    gFilter.filterBy = filterBy;
-    console.log(gFilter);
-}
-
-function setFolder(folder) {
-    gFilter.folder = folder;
-}
-
 function getFolder() {
     return gFilter.folder
-}
-
-function sendEmail(email) {
-    const { subject, to, cc, body } = email;
-    const from = gLoggedInUser.email;
-    const newEmail = _createEmail(subject, body, to, from, true, true, false);
-    gEmails.unshift(newEmail);
-    storageService.saveToStorage('EmailsDB', gEmails);
-    return Promise.resolve();
-}
-
-function deleteEmail(emailToDlt) {
-    if (!emailToDlt.isTrash) {
-        emailToDlt.isTrash = true;
-    } else {
-        const emailIdx = gEmails.findIndex(email => email.id === emailToDlt.id);
-        gEmails.splice(emailIdx, 1)
-    }
-    storageService.saveToStorage('InboxDB', gEmails);
-    return Promise.resolve()
-}
-
-function toggleStar(emailId) {
-    const email = getEmailById(emailId)
-        .then(email => {
-            email.isStar = !email.isStar;
-        })
-    storageService.saveToStorage('EmailsDB', gEmails)
-    return Promise.resolve();
-}
-
-function toggleRead(emailId, isRead) {
-    const email = getEmailById(emailId)
-        .then(email => {
-            email.isRead = isRead;
-        })
-    storageService.saveToStorage('EmailsDB', gEmails)
-}
-
-function getEmailById(id) {
-    return Promise.resolve(gEmails.find(email => email.id === id));
-}
-
-function getNumOfUnread() {
-    const unReadEmails = gEmails.filter(email => !email.isRead && !email.isSent);
-    return unReadEmails.length
 }
 
 function getDate(date) {
@@ -146,7 +95,76 @@ function getBody(txt) {
     return newTxts
 }
 
-function _createEmail(subject, body, from, to, isRead, isSent, isStar) {
+function getEmailById(id) {
+    return Promise.resolve(gEmails.find(email => email.id === id));
+}
+
+function getNumOfUnread() {
+    const unReadEmails = gEmails.filter(email => !email.isRead && !email.isSent);
+    return unReadEmails.length
+}
+
+
+function saveDraft(email) {
+    const { subject, to, body } = email
+    if (!subject) return
+    gDraft = _createEmail(subject, body, to, gLoggedInUser.email, true, false, false, true)
+}
+
+function setDraft() {
+    if (!gDraft) return;
+    gEmails.unshift(gDraft)
+    storageService.saveToStorage('EmailsDB', gEmails);
+    return Promise.resolve();
+}
+
+function setFilter(filterBy) {
+    gFilter.filterBy = filterBy;
+    console.log(gFilter);
+}
+
+function setFolder(folder) {
+    gFilter.folder = folder;
+}
+
+function sendEmail(email) {
+    const { subject, to, cc, body } = email;
+    const from = gLoggedInUser.email;
+    const newEmail = _createEmail(subject, body, to, from, true, true, false);
+    gEmails.unshift(newEmail);
+    storageService.saveToStorage('EmailsDB', gEmails);
+    return Promise.resolve();
+}
+
+function deleteEmail(emailToDlt) {
+    if (!emailToDlt.isTrash) {
+        emailToDlt.isTrash = true;
+    } else {
+        const emailIdx = gEmails.findIndex(email => email.id === emailToDlt.id);
+        gEmails.splice(emailIdx, 1)
+    }
+    storageService.saveToStorage('EmailsDB', gEmails);
+    return Promise.resolve()
+}
+
+function toggleStar(emailId) {
+    const email = getEmailById(emailId)
+        .then(email => {
+            email.isStar = !email.isStar;
+        })
+    storageService.saveToStorage('EmailsDB', gEmails)
+    return Promise.resolve();
+}
+
+function toggleRead(emailId, isRead) {
+    const email = getEmailById(emailId)
+        .then(email => {
+            email.isRead = isRead;
+        })
+    storageService.saveToStorage('EmailsDB', gEmails)
+}
+
+function _createEmail(subject, body, from, to, isRead, isSent, isStar, isDraft) {
     isStar = (!isStar) ? false : (Math.random() > 0.5) ? true : false;
     return {
         id: utilService.makeId(),
@@ -155,7 +173,7 @@ function _createEmail(subject, body, from, to, isRead, isSent, isStar) {
         isRead: isRead || ((Math.random() > 0.5) ? true : false),
         isStar: isStar,
         isSent: isSent || false,
-        isDraft: false,
+        isDraft: isDraft || false,
         isTrash: false,
         recievedAt: new Date(),
         from,

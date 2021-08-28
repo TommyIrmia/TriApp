@@ -17,21 +17,23 @@ export class MailCompose extends React.Component {
         isOpen: false,
     }
 
+    draftInterval;
     timeoutId;
-    componentDidMount() {
-        this.setInputs();
-    }
 
     componentDidMount() {
-        clearTimeout(this.timeoutId);
+        this.setInputs();
+        this.draftInterval = setInterval(this.saveDraft, 1000)
+    }
+
+    componentWillUnmount() {
         this.timeoutId = setTimeout(() => this.setState({ isOpen: true }), 0)
+        clearTimeout(this.timeoutId);
+        clearInterval(this.draftInterval);
     }
 
     setInputs = () => {
         const { emailId, action } = this.props.match.params
-        console.log(emailId, action);
         if (action === 'new') {
-            console.log('are youuuu');
             this.setState({
                 email: {
                     subject: '',
@@ -75,11 +77,15 @@ export class MailCompose extends React.Component {
     onBack = (ev) => {
         ev.preventDefault();
         this.props.history.goBack();
+        MailService.setDraft()
+    }
+
+    saveDraft = () => {
+        MailService.saveDraft(this.state.email)
     }
 
     render() {
         const { subject, to, cc, body } = this.state.email
-        console.log('isOpen?', this.state.isOpen);
         return (
             <section className="mail-compose">
                 <MailNav />

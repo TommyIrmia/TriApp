@@ -6,7 +6,6 @@ export class MailList extends React.Component {
 
     state = {
         emails: [],
-        // folder: 'inbox',
     }
 
     removeEventBus;
@@ -23,7 +22,6 @@ export class MailList extends React.Component {
     }
 
     loadEmails = () => {
-
         MailService.query()
             .then((emails) => {
                 this.setState({ emails })
@@ -48,14 +46,13 @@ export class MailList extends React.Component {
 
     onToggleRead = (ev, email, isRead) => {
         ev.stopPropagation();
-        // email.isRead = !email.isRead
         MailService.toggleRead(email.id, isRead)
         eventBusService.emit('set-read-num', {})
         this.loadEmails();
     }
 
     render() {
-        const { emails, folder } = this.state
+        const { emails } = this.state
         return (
             <section className="mail-list flex">
                 {emails.map(email => <MailPreview key={email.id}

@@ -41,11 +41,10 @@ export class MailNav extends React.Component {
 
 
     render() {
-        const { emails, folder } = this.state
-        console.log('isrender?');
+        const { folder } = this.state
         return (
             <section className="mail-nav">
-                <Link to="/mail/new-compose" className="clean">
+                <Link to="/mail/new-compose/new" className="clean">
                     <div className='compose'>
                         <div className="add-img"><img src="././img/add.jpg" /></div>
                         Compose</div>

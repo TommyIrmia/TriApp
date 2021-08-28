@@ -1,8 +1,6 @@
 import { MailFilter } from "../cmps/mail-filter.jsx";
 import { MailList } from "../cmps/mail-list.jsx";
 import { MailNav } from "../cmps/mail-nav.jsx";
-import { MailService } from "../services/mail.service.js";
-import { MailCompose } from './mail-compose.jsx';
 import { MailDetails } from "./mail-details.jsx";
 
 const { NavLink, Route } = ReactRouterDOM
