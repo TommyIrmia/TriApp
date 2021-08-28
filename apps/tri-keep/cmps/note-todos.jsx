@@ -81,12 +81,12 @@ render() {
                 <h3 className={(isDone)? 'line-through' : ''} >{info.txt}
                  <button onClick={this.onAllTodosDone} className={(isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </h3>
                 {info.todos.map((todo)  =>{
-                    return <React.Fragment key={todo.id} >
+                    return <div key={todo.id} >
                         <p className={(todo.doneAt || isDone)? 'line-through' : ''}  >{todo.txt} 
                         <button onClick={(ev)=>{
                             this.onTodoDone(ev,todo.id);
                         }} className={(todo.doneAt || isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </p>
-                    </React.Fragment>
+                    </div>
                 })}
                 
                 {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin} onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
