@@ -34,7 +34,8 @@
     align-items: center;
 }
 
-.app-header .book-logo, .app-header .keep-logo {
+.app-header .book-logo,
+.app-header .keep-logo {
     height: 80%;
     mix-blend-mode: multiply;
     transition: transform 0.5s;
@@ -54,7 +55,9 @@
     height: 80%;
 }
 
-.app-header .book-logo:hover, .keep-logo:hover, .mail-logo:hover {
+.app-header .book-logo:hover,
+.keep-logo:hover,
+.mail-logo:hover {
     transform: scale(1.3);
     cursor: pointer;
 }
@@ -63,4 +66,31 @@
     transform: scale(1.3);
     border-bottom: 2px black solid;
     box-shadow: 0px 5px 5px -5px rgb(85, 85, 85);
+}
+
+@media (max-width: 600px) {
+    .app-header .logos {
+        position: fixed;
+        /* flex-direction: column; */
+        right: 0;
+        align-items: flex-end;
+        z-index: 2;
+        width: 100%;
+        height: inherit;
+        background-color: #e2eaeae0;
+        justify-content: space-around;
+        border-bottom: unset;
+        box-shadow: unset;
+    }
+    .active {
+        border-bottom: unset;
+        box-shadow: unset;
+    }
+    .app-header .book-logo,
+    .app-header .keep-logo {
+        height: 40%;
+    }
+    .app-header .mail-logo {
+        height: 45%;
+    }
 }

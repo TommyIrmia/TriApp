@@ -25,7 +25,17 @@
     border-radius: 2rem;
     padding: 20px;
     width: 45%;
-    height: 18vh;
+    height: 24vh;
+}
+
+.app-img img {
+    width: 114%;
+    height: inherit;
+    border-radius: inherit;
+    object-fit: cover;
+    position: relative;
+    top: -20px;
+    left: -19px;
 }
 
 .app-preview.app1 .app-img {
