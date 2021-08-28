@@ -57,10 +57,10 @@ export class NoteAdd extends React.Component {
                     <button onClick={() => {
                         onAddNote(inputInfo)
                     }} > <img src="./././img/add.png" /></button>
-                    <div className="flex fonts-container" >
+                    <div className={`flex fonts-container `} >
                         <p onClick={() => {
                             this.onSelectInput('note-txt')
-                        }} title="Text" className="fas fa-pencil-alt"></p>
+                        }} title="Text" className={`fas fa-pencil-alt ${inputInfo.type === 'note-txt' ? 'btn-chosen' : ''} `}></p>
                         <p onClick={() => {
                             this.onSelectInput('note-img')
                         }} title="Imag" className="fas fa-imag"></p>

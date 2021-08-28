@@ -50,3 +50,7 @@
 .note-add textarea:focus {
     outline: none;
 }
+
+.btn-chosen {
+    color: rgb(145, 253, 145);
+}
