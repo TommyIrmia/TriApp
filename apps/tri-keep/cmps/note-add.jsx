@@ -54,7 +54,7 @@ export class NoteAdd extends React.Component {
                     <label htmlFor="note-txt"></label>
                     <textarea ref={this.refArea} type="textarea" id="note-txt" name='txt'
                         value={txt} placeholder={placeholder} onChange={this.handleChange} />
-                    <button onClick={() => {
+                    <button className={"add-btn"} onClick={() => {
                         onAddNote(inputInfo)
                     }} > <img src="./././img/add.png" /></button>
                     <div className={`flex fonts-container `} >

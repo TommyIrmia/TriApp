@@ -55,7 +55,7 @@
     color: rgb(132 165 157);
 }
 
-@media (max-width: 550px) {
+@media (max-width: 655px) {
     /* .fas.fa-pencil-alt::before {
         font-size: 15px;
     }
@@ -71,23 +71,30 @@
     .note-add button img {
         width: 30px;
     } */
+    .note-add {
+        margin: 3.125rem 10px;
+    }
+    .txt-container {
+        flex-direction: column;
+        width: 90%;
+    }
     .fonts-container {
         gap: 21px;
         margin-inline-end: 5px;
         position: relative;
-        top: -55px;
-        left: -20%;
+        top: -45px;
+        left: 30%;
         z-index: 1;
     }
     .note-add textarea {
-        width: 100%;
+        position: absolute;
+        width: 90%;
     }
-    .note-add button img {
-        gap: 21px;
-        margin-inline-end: 5px;
-        position: relative;
-        top: -55px;
-        left: -20%;
+
+    .note-add .add-btn {
+        width: 40px;
+        position: absolute;
+        right: 12%;
         z-index: 1;
     }
 }
