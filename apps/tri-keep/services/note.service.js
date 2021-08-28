@@ -283,7 +283,7 @@ function _createNotes() {
                 type: "note-video",
                 info: {
                     url: "https://giphy.com/embed/hjUYcGyhsGvI7not7w/video",
-                    title: ''
+                    title: 'sprint 3 be like'
                 },
                 style: {
                     backgroundColor: "rgb(180, 248, 200)"
