@@ -4,6 +4,8 @@
 }
 
 .pinned-note-list {
+    /* margin: 0 auto; */
+    padding-top: 20px;
     column-count: 1;
     border-bottom: 1px solid #0000001a;
     padding-bottom:20px;
