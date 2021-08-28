@@ -8,7 +8,6 @@ export class NoteApp extends React.Component {
     state = {
         notes: [],
         pinnedNotes: [],
-        filterBy: null,
     }
 
     componentDidMount() {
@@ -20,13 +19,13 @@ export class NoteApp extends React.Component {
         this.setState({ notes: [], filterBy: null })
     }
 
-    loadNotes = () => {
-        NoteService.query(false)
+    loadNotes = (filterBy) => {
+        NoteService.query(false, filterBy)
             .then((notes) => { this.setState({ notes }) })
     }
 
-    loadPinnedNotes = () => {
-        NoteService.query(true)
+    loadPinnedNotes = (filterBy) => {
+        NoteService.query(true, filterBy)
             .then((pinnedNotes) => this.setState({ pinnedNotes }))
     }
 
@@ -44,19 +43,24 @@ export class NoteApp extends React.Component {
             })
     }
 
-    onDuplicateNote = (ev,note) => {
+    onDuplicateNote = (ev, note) => {
         ev.stopPropagation();
         NoteService.duplicateNote(note)
-        .then(()=>{
-            this.loadNotes();
-            this.loadPinnedNotes();
-        })
+            .then(() => {
+                this.loadNotes();
+                this.loadPinnedNotes();
+            })
     }
 
     onAddNote = (inputInfo) => {
         if (!inputInfo.txt) return;
         NoteService.addNote(inputInfo)
-        .then((notes) => { this.setState({ notes})})
+            .then((notes) => { this.setState({ notes }) })
+    }
+
+    onSetFilter = (filterBy) => {
+        this.loadNotes(filterBy)
+        this.loadPinnedNotes(filterBy)
     }
 
     render() {
@@ -64,7 +68,7 @@ export class NoteApp extends React.Component {
         return (
             <section className="note-app">
                 <NoteFilter onSetFilter={this.onSetFilter} />
-        <NoteAdd notes={notes} onAddNote={this.onAddNote} />
+                <NoteAdd notes={notes} onAddNote={this.onAddNote} />
                 <NoteList notes={notes}
                     pinnedNotes={pinnedNotes}
                     onRemoveNote={this.onRemoveNote}

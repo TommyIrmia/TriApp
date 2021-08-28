@@ -37,23 +37,26 @@ export class NoteImg extends React.Component {
         NoteService.saveTxt(this.props.note.id, innerText)
     }
 
-     render() {
-        const { note, onRemoveNote, onSetNotePin,onDuplicateNote } = this.props;
+    render() {
+        const { note, onRemoveNote, onSetNotePin, onDuplicateNote } = this.props;
         const { isContentEditable, isHover, color } = this.state;
         return (
+
             <section className="note-container"
                 onMouseEnter={() => this.setState({ isHover: true })}
                 onMouseLeave={() => this.setState({ isHover: false })}>
-                <div onClick={this.onUnEdit}  className={(isContentEditable) ? 'screen' : ''}></div>
-                <section style={{ backgroundColor: color }}
-                    className={`${note.type}  ${(isContentEditable) ? 'editable' : '' } `}
-                    onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
-                    suppressContentEditableWarning={true} >
-                     <img src={note.info.url} />
-                     <h1> {note.info.title}</h1>
+                <div>
+                    <div onClick={this.onUnEdit} className={(isContentEditable) ? 'screen' : ''}></div>
+                    <section style={{ backgroundColor: color }}
+                        className={`${note.type}  ${(isContentEditable) ? 'editable' : ''} `}
+                        onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
+                        suppressContentEditableWarning={true} >
+                        <img src={note.info.url} />
+                        <h1> {note.info.title}</h1>
+                    </section>
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
-                     onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
-                </section>
+                        onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
+                </div>
             </section>
 
         )

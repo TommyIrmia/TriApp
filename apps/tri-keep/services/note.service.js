@@ -29,7 +29,7 @@ var gdeletedNotes = []
 // }
 
 function removeNote(noteId) {
-    var noteIdx = gNotes.findIndex(function(note) {
+    var noteIdx = gNotes.findIndex(function (note) {
         return noteId === note.id
     })
     gNotes.splice(noteIdx, 1)
@@ -99,8 +99,6 @@ function todoDone(noteId, todos, todoIdx) {
 }
 
 
-
-
 function getNoteById(noteId) {
     const note = gNotes.find(note => note.id === noteId)
     return Promise.resolve(note)
@@ -147,12 +145,6 @@ function _createNoteImg(type, url) {
     }
 }
 
-
-
-
-
-
-
 function _createNoteTodos(txt) {
 
 
@@ -185,141 +177,147 @@ function _createNoteTodos(txt) {
     return notesTodos;
 }
 
-
-
 _createNotes()
 
 function _createNotes() {
     var notes = storageService.loadFromStorage(KEY);
     if (!notes || !notes.length) {
         notes = [{
-                id: "n101",
-                type: "note-txt",
-                isPinned: true,
-                info: {
-                    txt: "Fullstack Me Baby!"
-                },
-                style: {
-                    backgroundColor: "rgb(229 227 74)"
-                }
+            id: "n101",
+            type: "note-txt",
+            isPinned: true,
+            info: {
+                txt: "Fullstack Me Baby!"
             },
-            {
-                id: "n102",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "#00d"
-                }
+            style: {
+                backgroundColor: "rgb(229 227 74)"
+            }
+        },
+        {
+            id: "n102",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
+                title: "smoke on ground",
             },
-            {
-                id: "n103",
-                isPinned: false,
-                type: "note-todos",
-                isDone: 'false',
-                info: {
-                    label: "Get my shit together",
-                    todos: [
-                        { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
-                        { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
-                    ]
-                },
-                style: {
-                    backgroundColor: "rgb(75 168 88)"
-                }
+            style: {
+                backgroundColor: "#00d"
+            }
+        },
+        {
+            id: "n103",
+            isPinned: false,
+            type: "note-todos",
+            isDone: 'false',
+            info: {
+                label: "Get my shit together",
+                todos: [
+                    { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
+                    { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
+                ]
             },
-            {
-                id: "n104",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "tommyyyyyyy stommmmmmm"
-                },
-                style: {
-                    backgroundColor: "rgb(75 168 88)"
-                }
+            style: {
+                backgroundColor: "rgb(75 168 88)"
+            }
+        },
+        {
+            id: "n104",
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "tommyyyyyyy stommmmmmm"
             },
-            {
-                id: "n105",
-                isPinned: false,
-                type: "note-video",
-                info: {
-                    url: "https://www.youtube.com/embed/H1HdZFgR-aA",
-                    title: ''
-                },
-                style: {
-                    backgroundColor: "#f44336"
-                }
+            style: {
+                backgroundColor: "rgb(75 168 88)"
+            }
+        },
+        {
+            id: "n105",
+            isPinned: false,
+            type: "note-video",
+            info: {
+                url: "https://www.youtube.com/embed/H1HdZFgR-aA",
+                title: ''
             },
-            {
-                id: "n106",
-                type: "note-txt",
-                isPinned: false,
-                info: {
-                    txt: "im txt"
-                },
-                style: {
-                    backgroundColor: "rgb(98 98 192)"
-                }
+            style: {
+                backgroundColor: "#f44336"
+            }
+        },
+        {
+            id: "n106",
+            type: "note-txt",
+            isPinned: false,
+            info: {
+                txt: "im txt"
             },
-            {
-                id: "n107",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "#00d"
-                }
+            style: {
+                backgroundColor: "rgb(98 98 192)"
+            }
+        },
+        {
+            id: "n107",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
+                title: "smoke on ground",
             },
-            {
-                id: "n108",
-                isPinned: true,
-                type: "note-video",
-                info: {
-                    url: "https://giphy.com/embed/hjUYcGyhsGvI7not7w/video",
-                    title: ''
-                },
-                style: {
-                    backgroundColor: "rgb(180, 248, 200)"
-                }
+            style: {
+                backgroundColor: "#00d"
+            }
+        },
+        {
+            id: "n108",
+            isPinned: true,
+            type: "note-video",
+            info: {
+                url: "https://giphy.com/embed/hjUYcGyhsGvI7not7w/video",
+                title: ''
             },
-            {
-                id: "n109",
-                isPinned: false,
-                type: "note-img",
-                info: {
-                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                    title: "smoke on ground",
-                },
-                style: {
-                    backgroundColor: "rgb(98 98 192)"
-                }
+            style: {
+                backgroundColor: "rgb(180, 248, 200)"
+            }
+        },
+        {
+            id: "n109",
+            isPinned: false,
+            type: "note-img",
+            info: {
+                url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
+                title: "smoke on ground",
             },
+            style: {
+                backgroundColor: "rgb(98 98 192)"
+            }
+        },
         ]
     }
     gNotes = [...notes];
     _saveNotesToStorage();
 }
 
-
-
 function _saveNotesToStorage() {
     storageService.saveToStorage(KEY, gNotes);
 }
 
-function query(filterBy) {
-    if (!filterBy) {
+function query(pinned, filterBy) {
+    if (!pinned) {
         const notes = gNotes.filter(note => !note.isPinned)
-        return Promise.resolve(notes)
+        if (!filterBy || filterBy.type === 'all') return Promise.resolve(notes)
+        else {
+            const filteredNotes = notes.filter(note => note.type === filterBy.type)
+            return Promise.resolve(filteredNotes)
+        }
     } else {
         const pinnedNotes = gNotes.filter(note => note.isPinned);
-        return Promise.resolve(pinnedNotes)
+        if (!filterBy || filterBy.type === 'all') return Promise.resolve(pinnedNotes)
+        else {
+            const filteredpinnedNotes = pinnedNotes.filter(note => {
+                return note.type === filterBy.type
+            })
+            return Promise.resolve(filteredpinnedNotes)
+        }
     }
 }
 
