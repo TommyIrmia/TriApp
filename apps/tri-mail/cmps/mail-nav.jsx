@@ -56,7 +56,7 @@ export class MailNav extends React.Component {
                     <div className="inbox-img"><img src="././img/inbox.png" /></div>
                     Inbox
                     <h4>
-                        {(MailService.getNumOfUnread(emails)) ? MailService.getNumOfUnread(emails) : ''}
+                        {(MailService.getNumOfUnread()) ? MailService.getNumOfUnread() : ''}
                     </h4>
                 </div>
                 {/* </Link> */}

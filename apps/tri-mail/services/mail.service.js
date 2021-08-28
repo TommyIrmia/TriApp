@@ -123,8 +123,8 @@ function getEmailById(id) {
     return Promise.resolve(gEmails.find(email => email.id === id));
 }
 
-function getNumOfUnread(emails) {
-    const unReadEmails = emails.filter(email => !email.isRead);
+function getNumOfUnread() {
+    const unReadEmails = gEmails.filter(email => !email.isRead && !email.isSent);
     return unReadEmails.length
 }
 

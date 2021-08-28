@@ -99,8 +99,6 @@ function todoDone(noteId, todos, todoIdx) {
 }
 
 
-
-
 function getNoteById(noteId) {
     const note = gNotes.find(note => note.id === noteId)
     return Promise.resolve(note)
@@ -147,12 +145,6 @@ function _createNoteImg(type, url) {
     }
 }
 
-
-
-
-
-
-
 function _createNoteTodos(txt) {
 
 
@@ -184,8 +176,6 @@ function _createNoteTodos(txt) {
     notesTodos.info.todos = todos
     return notesTodos;
 }
-
-
 
 _createNotes()
 
@@ -307,19 +297,27 @@ function _createNotes() {
     _saveNotesToStorage();
 }
 
-
-
 function _saveNotesToStorage() {
     storageService.saveToStorage(KEY, gNotes);
 }
 
-function query(filterBy) {
-    if (!filterBy) {
+function query(pinned, filterBy) {
+    if (!pinned) {
         const notes = gNotes.filter(note => !note.isPinned)
-        return Promise.resolve(notes)
+        if (!filterBy || filterBy.type === 'all') return Promise.resolve(notes)
+        else {
+            const filteredNotes = notes.filter(note => note.type === filterBy.type)
+            return Promise.resolve(filteredNotes)
+        }
     } else {
         const pinnedNotes = gNotes.filter(note => note.isPinned);
-        return Promise.resolve(pinnedNotes)
+        if (!filterBy || filterBy.type === 'all') return Promise.resolve(pinnedNotes)
+        else {
+            const filteredpinnedNotes = pinnedNotes.filter(note => {
+                return note.type === filterBy.type
+            })
+            return Promise.resolve(filteredpinnedNotes)
+        }
     }
 }
 

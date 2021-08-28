@@ -1,6 +1,5 @@
 import { ShortPreview } from './short-preview.jsx'
 import { LongPreview } from './long-preview.jsx'
-import { MailService } from '../services/mail.service.js'
 
 export class MailPreview extends React.Component {
 

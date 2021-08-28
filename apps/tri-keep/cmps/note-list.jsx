@@ -1,10 +1,10 @@
 import { NotePreview } from './note-preview.jsx'
 
-export function NoteList({ notes, pinnedNotes, onRemoveNote, onSetNotePin,onDuplicateNote }) {
+export function NoteList({ notes, pinnedNotes, onRemoveNote, onSetNotePin, onDuplicateNote }) {
 
     return (
         <section className="note-list flex">
-            <section className="pinned-note-list flex">
+            <section className="pinned-note-list">
                 {pinnedNotes.map(note => <NotePreview onDuplicateNote={onDuplicateNote} onRemoveNote={onRemoveNote} key={note.id}
                     note={note} onSetNotePin={onSetNotePin} />)}
             </section>
