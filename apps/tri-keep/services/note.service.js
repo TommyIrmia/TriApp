@@ -137,7 +137,7 @@ function _createNoteImg(type, url) {
         type,
         info: {
             url,
-            title: "",
+            txt: "",
         },
         style: {
             backgroundColor: utilService.getRandomColor()
@@ -162,7 +162,7 @@ function _createNoteTodos(txt) {
 
 
     const todos = []
-    notesTodos.info.label = txt.split(',')[0]
+    notesTodos.info.txt = txt.split(',')[0]
     const newTtx = txt.split(',').slice(1).join(',')
     const userTodos = newTtx.split(',')
     userTodos.forEach(todo => {
@@ -199,7 +199,7 @@ function _createNotes() {
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/933/200/300.jpg?hmac=8zdipGWKGkHz8wyA9J63P3fzghuUL9wqV5Y34b8mLTI",
-                    title: "smoke on ground",
+                    txt: "smoke on ground",
                 },
                 style: {
                     backgroundColor: "#00d"
@@ -211,7 +211,7 @@ function _createNotes() {
                 type: "note-todos",
                 isDone: 'false',
                 info: {
-                    label: "Get my shit together",
+                    txt: "Get my shit together",
                     todos: [
                         { txt: "Driving liscence", doneAt: null, id: utilService.makeId() },
                         { txt: "Coding power", doneAt: 187111111, id: utilService.makeId() }
@@ -238,7 +238,7 @@ function _createNotes() {
                 type: "note-video",
                 info: {
                     url: "https://www.youtube.com/embed/H1HdZFgR-aA",
-                    title: ''
+                    txt: ''
                 },
                 style: {
                     backgroundColor: "#f44336"
@@ -261,7 +261,7 @@ function _createNotes() {
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
-                    title: "smoke on ground",
+                    txt: "smoke on ground",
                 },
                 style: {
                     backgroundColor: "#00d"
@@ -273,7 +273,7 @@ function _createNotes() {
                 type: "note-video",
                 info: {
                     url: "https://giphy.com/embed/hjUYcGyhsGvI7not7w/video",
-                    title: 'sprint 3 be like'
+                    txt: 'sprint 3 be like'
                 },
                 style: {
                     backgroundColor: "rgb(180, 248, 200)"
@@ -285,7 +285,7 @@ function _createNotes() {
                 type: "note-img",
                 info: {
                     url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                    title: "smoke on ground",
+                    txt: "smoke on ground",
                 },
                 style: {
                     backgroundColor: "rgb(98 98 192)"

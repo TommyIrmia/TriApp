@@ -51,7 +51,7 @@ export class NoteVideo extends React.Component {
                       <iframe width="400" height="250"
                             src={note.info.url}>
                         </iframe>
-                     <h1> {note.info.title}</h1>
+                     <h1> {note.info.txt}</h1>
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
                      onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </section>

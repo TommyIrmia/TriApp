@@ -52,8 +52,9 @@ export class NoteImg extends React.Component {
                         onClick={this.onSetEdit} ref={this.contentRef} contentEditable={isContentEditable}
                         suppressContentEditableWarning={true} >
                         <img src={note.info.url} />
-                        <h1> {note.info.title}</h1>
+                        <h1> {note.info.txt}</h1>
                     </section>
+                    
                     {isHover && <NoteActions onDuplicateNote={onDuplicateNote} onSetNotePin={onSetNotePin}
                         onChangeColor={this.onChangeColor} note={note} onRemoveNote={onRemoveNote} />}
                 </div>

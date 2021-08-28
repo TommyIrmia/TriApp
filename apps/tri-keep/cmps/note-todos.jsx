@@ -78,7 +78,7 @@ render() {
                 suppressContentEditableWarning={true}>
 
 
-                <h3 className={(isDone)? 'line-through' : ''} >{info.label}
+                <h3 className={(isDone)? 'line-through' : ''} >{info.txt}
                  <button onClick={this.onAllTodosDone} className={(isDone)? 'far fa-check-square' : 'far fa-square'} ></button> </h3>
                 {info.todos.map((todo)  =>{
                     return <React.Fragment key={todo.id} >

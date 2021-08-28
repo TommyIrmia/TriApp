@@ -2,7 +2,7 @@ export class NoteAdd extends React.Component {
 
     state = {
         inputInfo: {
-            type: 'note-text',
+            type: 'note-txt',
             placeholder: 'Write a note...',
             txt: '',
         }
@@ -12,7 +12,6 @@ export class NoteAdd extends React.Component {
     handleChange = (ev) => {
         const field = ev.target.name;
         const val = ev.target.value;
-        console.log('from handle change', field, val);
         this.setState({ txt: val });
         this.setState({ inputInfo: { ...this.state.inputInfo, [field]: val } })
     }
@@ -47,7 +46,7 @@ export class NoteAdd extends React.Component {
 
     render() {
         const { inputInfo } = this.state;
-        const { placeholder, type, txt } = this.state.inputInfo
+        const { placeholder,txt } = this.state.inputInfo
         const { onAddNote } = this.props;
         return (
             <div className="note-add">
@@ -64,7 +63,10 @@ export class NoteAdd extends React.Component {
                         }} title="Text" className="fas fa-pencil-alt"></p>
                         <p onClick={() => {
                             this.onSelectInput('note-img')
-                        }} title="imag" className="fas fa-imag"></p>
+                        }} title="Imag" className="fas fa-imag"></p>
+                        <p onClick={() => {
+                            this.onSelectInput('note-video')
+                        }} title="Video" className="far fa-file-video"></p>
                         <p onClick={() => {
                             this.onSelectInput('note-todos')
                         }} title="List" className="fas fa-list"></p>
