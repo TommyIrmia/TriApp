@@ -7,24 +7,24 @@ export class AppHeader extends React.PureComponent {
     }
 
     onToggleNav = () => {
-        this.setState({ isNavDown: true });
+        this.setState({ isNavDown: !this.state.isNavDown });
     }
 
     render() {
-        const {isNavDown} = this.state
-        console.log(isNavDown);
+        const { isNavDown } = this.state
         return (<section className="app-header">
-        <Link to={'/'} className="main-logo clean">
-            <img src="./img/logo.png" />
-            <h1>TriApp</h1>
-        </Link>
-        <div className={(isNavDown) ? 'nav-down' :''} className="logos">
-            <NavLink to={'/mail'} className="mail-logo"><img src="./img/maillogo.png" /></NavLink>
-            <NavLink to={'/keep'} className="keep-logo"><img src="./img/keeplogo.png" /></NavLink>
-            <NavLink to={'/book'} className="book-logo"><img src="./img/booklogo.png" /></NavLink>
-        </div>
-        <button onClick={this.onToggleNav} className="btn-toggle-nav fas fa-caret-square-down" ></button>
-    </section>
-    )
+            <Link to={'/'} className="main-logo clean">
+                <img src="./img/logo.png" />
+                <h1>TriApp</h1>
+            </Link>
+            <div className={`logos ${(isNavDown) ? 'nav-down' : ''}`} >
+                <NavLink to={'/mail'} className="mail-logo"><img src="./img/maillogo.png" /></NavLink>
+                <NavLink to={'/keep'} className="keep-logo"><img src="./img/keeplogo.png" /></NavLink>
+                <NavLink to={'/book'} className="book-logo"><img src="./img/booklogo.png" /></NavLink>
+            </div>
+            <button onClick={this.onToggleNav} className={`btn-toggle-nav fas fa-caret-square-${isNavDown ? 'up' : 'down'}`} ></button>
+        </section>
+        )
+    }
 }
-}
+//

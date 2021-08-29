@@ -75,6 +75,10 @@
         content: "\f150";
         font-size: 40px;
     }
+    .fas.fa-caret-square-up::before {
+        content: "\f151";
+        font-size: 40px;
+    }
     /* HOVER */
     
     .fa-pencil-alt:hover {

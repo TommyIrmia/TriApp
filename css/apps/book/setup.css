@@ -15,10 +15,10 @@
     background-color: inherit;
 }
 
-.active {
+/* .active {
     color: lightblue;
     background-color: inherit;
-}
+} */
 
 @keyframes blink-2 {
     0% {

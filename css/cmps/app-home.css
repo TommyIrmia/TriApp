@@ -33,7 +33,7 @@
     padding: 5px;
     border-radius: 2rem;
     width: 45%;
-    height: 20vh;
+    height: 22vh;
     display: flex;
     justify-content: center;
 }
@@ -58,6 +58,7 @@
 }
 
 .app-preview .app-info {
+    padding: 20px;
     width: 45%;
 }
 
