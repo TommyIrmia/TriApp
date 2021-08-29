@@ -32,9 +32,7 @@ function removeNote(noteId) {
     var noteIdx = gNotes.findIndex(function (note) {
         return noteId === note.id
     })
-    console.log('before', gNotes);
     gNotes.splice(noteIdx, 1)
-    console.log(gNotes);
     _saveNotesToStorage();
     return Promise.resolve(gNotes)
 }
