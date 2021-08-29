@@ -29,7 +29,6 @@ export class ReviewAdd extends React.Component {
 
     onSaveRate = (rate) => {
         this.state.review.rate = rate;
-        console.log(this.state.review);
     }
 
     onToggleAddReview = () => {

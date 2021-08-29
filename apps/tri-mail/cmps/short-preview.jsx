@@ -5,13 +5,13 @@ import { LongTxt } from "../../../cmps/long-txt.jsx"
 export class ShortPreview extends React.Component {
     state = {
         isHover: false,
-        txtLength: 70,
+        txtLength: 30,
     }
 
 
     componentDidMount() {
         window.addEventListener('resize', this.getTextLength)
-
+        this.getTextLength()
     }
 
 

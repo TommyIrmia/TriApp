@@ -11,13 +11,11 @@ export class NoteFilter extends React.Component {
         const value = ev.target.value;
         this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => {
             this.props.onSetFilter(this.state.filterBy)
-            // console.log(this.state.filterBy);
         });
     };
 
     onFilter = (ev) => {
         ev.preventDefault();
-        // this.props.onSetFilter(this.state.filterBy)
     };
 
     render() {

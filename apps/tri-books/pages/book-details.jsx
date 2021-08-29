@@ -25,7 +25,6 @@ export class BookDetails extends React.Component {
 
     loadReviews = () => {
         const reviews = this.state.book.review;
-        console.log('reviews?', reviews);
         this.setState({ reviews })
     }
 
