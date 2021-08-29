@@ -282,8 +282,8 @@ function _createNotes() {
                 isPinned: false,
                 type: "note-img",
                 info: {
-                    url: "https://i.picsum.photos/id/565/200/300.jpg?hmac=Ho0T-TCTMRX_uDDGzaLhGzTmukSZdDjpGZJTbL0NY3k",
-                    txt: "smoke on ground",
+                    url: "https://st4.depositphotos.com/1703608/21210/i/950/depositphotos_212102742-stock-photo-portrait-funny-raccoon-showing-sign.jpg",
+                    txt: "hey",
                 },
                 style: {
                     backgroundColor: "rgb(98 98 192)"
@@ -311,8 +311,8 @@ function _createNotes() {
                 isPinned: false,
                 type: "note-img",
                 info: {
-                    url: "https://i.picsum.photos/id/615/200/300.jpg?hmac=ehJCfeXO1-ZbwBXgbYKroA97kTtoPKNoyEbCxnzsYfU",
-                    txt: "smoke on ground",
+                    url: "https://i.picsum.photos/id/306/200/300.jpg?hmac=T-FQeWIc7YbLbcYdpyDGypNif0btJ8n5P4ozBJx8WgE",
+                    txt: "🌼",
                 },
                 style: {
                     backgroundColor: "#00d"
