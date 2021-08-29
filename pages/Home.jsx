@@ -21,7 +21,6 @@ export class Home extends React.Component {
         this.inter = setInterval(() => {
             idx++
             if (idx > 3) idx = 0;
-            console.log(idx, type);
             if (type === 'mail') this.setState({ mailIdx: idx });
             if (type === 'book') this.setState({ bookIdx: idx });
             if (type === 'keep') this.setState({ keepIdx: idx });
