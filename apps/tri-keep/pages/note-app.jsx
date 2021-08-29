@@ -31,7 +31,12 @@ export class NoteApp extends React.Component {
 
     onRemoveNote = (noteId) => {
         NoteService.removeNote(noteId)
-            .then((notes) => { this.setState({ notes }) })
+            .then((notes) => {
+                {
+                    this.loadPinnedNotes();
+                    this.loadNotes();
+                }
+            })
     }
 
     onSetNotePin = (ev, noteId) => {
